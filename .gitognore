@@ -2,7 +2,7 @@
 /node_modules
 
 # misc
-.DS_store
+.DS_Store
 
 # local env files
 .env
