@@ -31,8 +31,6 @@ const knex = require("knex")(knexFile);
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(express.static("public"));
-
 //setting up local strategies
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("./bcrypt.js");
