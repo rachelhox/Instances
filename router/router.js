@@ -32,7 +32,7 @@ module.exports = (express) => {
   router.post(
     "/login",
     passport.authenticate("local-login", {
-      successRedirect: "/",
+      successRedirect: "/secret",
       failureRedirect: "/error",
     })
   );
