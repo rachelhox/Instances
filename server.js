@@ -31,14 +31,14 @@ app.get("/", (req, res) => {
   res.render("index");
 });
 
-
-app.get("/logout", (req, res) => {
+// Logout using POST
+app.post("/logout", (req, res) => {
   req.logout();
   res.redirect("/login");
 });
 
 
-//after login
+//function to check if the user is authenicated
 function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
     return next();
@@ -46,27 +46,25 @@ function isLoggedIn(req,res,next){
   res.redirect('/login');
 }
 
-//get the the loggedin dashboard page
+//GET the the loggedin dashboard page
 app.get("/dashboard",isLoggedIn,(req,res)=>{
 // res.render('dashboard')
 res.render("createProfile");
 })
 
-
-
-//get the login page
+//GET the login page
 app.get("/login",(req,res)=>{
   // res.render('dashboard')
   res.render("loginRegister")
   })
 
-//post login
+//POST login
 app.post('/login', passport.authenticate('local-login', {
   successRedirect: '/dashboard',
   failureRedirect: '/error'
 }));
 
-//post register
+//POST register
 app.post('/signup', passport.authenticate('local-signup', {
   successRedirect: '/login',
   failureRedirect: '/error'
