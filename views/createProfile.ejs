@@ -1,56 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <link rel="stylesheet" href="styling/general.css">
-    <link rel="stylesheet" href="styling/createProfile.css">
+    <link rel="stylesheet" href="styling/general.css" />
+    <link rel="stylesheet" href="styling/createProfile.css" />
 
     <title>Create Profile | Instance</title>
-</head>
+  </head>
 
-<body>
-
+  <body>
     <!----------------- Header ----------------->
     <div class="no-nav-header-alt">
-        <div id="temporary-icon-alt">
-            Ins
-        </div>
+      <div id="temporary-icon-alt">Ins</div>
     </div>
 
     <!----------------- Form ----------------->
 
     <div class="profileContainer">
-        <h1>Create Your Profile</h1>
-        <form class="profileformContainer" action="/create" method="post">
-            <div>
-                <label for="Name">Nickname</label>
-                <input type="text" id="profileNickname" name="profileNickname" required>
-            </div>
-            <div>
-                <label for="profilePhoto">Profile Picture</label>
-                    <input type="file" id="profilePhoto" name="profilePhoto">
-                    <input type="submit" value="Upload">
-            </div>
-            <div>
-                <label for="gender">Gender</label>
-                <select id="gender" name="gender" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                </select>
-            </div>
+      <h1>Create Your Profile</h1>
+      <form class="profileformContainer" action="/create" method="post">
+        <div>
+          <label for="Name">Nickname</label>
+          <input type="text" id="profileNickname" name="nickname" required />
+        </div>
+        <div>
+          <label for="profilePhoto">Profile Picture</label>
+          <input type="file" id="profilePhoto" name="photo" />
+          <input type="submit" value="Upload" />
+        </div>
+        <div>
+          <label for="gender">Gender</label>
+          <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+          </select>
+        </div>
 
-            <div>
-                <label for="profiledescription">Description</label>
-                <textarea type="text" id="profileDescription" name="profileDescription" maxlength="300"
-                    placeholder="Max length: 300 characters" required></textarea>
-            </div>
-            <button type="submit" name="button">Create Profile</button>
-        </form>
+        <div>
+          <label for="profiledescription">Description</label>
+          <textarea
+            type="text"
+            id="profileDescription"
+            name="description"
+            maxlength="300"
+            placeholder="Max length: 300 characters"
+            required
+          ></textarea>
+        </div>
+        <button type="submit" name="button">Create Profile</button>
+      </form>
     </div>
-
-</body>
-
+  </body>
 </html>
