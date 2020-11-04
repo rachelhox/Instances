@@ -1,0 +1,56 @@
+/* ---------------  FONT IMPORTS  --------------- */
+
+/* Imported 'Monsterrat': light, Regular, Bold, Extra-bold*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700;800&display=swap');
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #f6f5f7;;
+   }
+
+h2 {
+    font-weight: bold;
+    margin: 0;
+}
+
+/* ---------------  NO NAV HEADER STYLING --------------- */
+.no-nav-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+}
+
+#temporary-icon {
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    background-color: rgb(255, 55, 100);
+    color: white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+/* ---------------  NO NAV HEADER (ALT) STYLING --------------- */
+.no-nav-header-alt {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px 10px;
+}
+
+#temporary-icon-alt {
+    height: 70px;
+    width: 70px;
+    border-radius: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bolder;
+    background-color: white;
+    color: rgb(255, 55, 100);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
