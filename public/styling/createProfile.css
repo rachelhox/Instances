@@ -1,0 +1,88 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;;
+}
+
+/* ---------------  BACKGROUND AND GENERAL  --------------- */
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background:
+    linear-gradient(217deg, rgba(255,15,123,.9), rgba(255,15,123,0) 70.71%), 
+    linear-gradient(127deg, rgba(250, 55, 50, 0.9), rgba(250,55,50,0) 70.71%),
+    linear-gradient(336deg, rgba(255, 150, 21, 0.9), rgba(255,150,21,0) 70.71%);
+}
+
+h1 {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    /* margin-bottom: 100px; */
+    background: linear-gradient(to right, rgba(255, 15, 123, 0.8),rgba(250, 55, 50, 0.8), rgba(255, 150, 21, 0.8));
+    -webkit-text-fill-color: transparent; 
+    -webkit-background-clip: text; 
+}
+/* ---------------  CONTAINER  --------------- */
+
+.profileContainer {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    position: relative;
+    overflow: scroll;
+    width: 55vw;
+    height: 80%;
+    min-width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 80px;
+    text-align: center;
+}
+
+.profileContainer input, select, textarea{
+    background: #eee;
+    border: none;
+    padding: 12px 15px;
+    margin: 12px 0;
+    width: 100%;
+    outline: none;
+}
+
+select {
+   font-family: 'Montserrat', sans-serif;
+   text-align-last: center;
+}
+
+textarea {
+    line-height: 350%;
+    resize: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+button:focus {
+    outline: none;
+}
