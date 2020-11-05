@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <link rel="stylesheet" href="styling/general.css" />
-    <link rel="stylesheet" href="styling/createProfile.css" />
+    <link rel="stylesheet" href="/styling/general.css" />
+    <link rel="stylesheet" href="/styling/createProfile.css" />
 
     <title>Create Profile | Instance</title>
   </head>
@@ -20,7 +20,11 @@
 
     <div class="profileContainer">
       <h1>Create Your Profile</h1>
-      <form class="profileformContainer" action="/create" method="post">
+      <form
+        class="profileformContainer"
+        action="/create/<%=username%>"
+        method="post"
+      >
         <div>
           <label for="Name">Nickname</label>
           <input type="text" id="profileNickname" name="nickname" required />

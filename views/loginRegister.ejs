@@ -3,8 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styling/general.css" />
-    <link rel="stylesheet" href="styling/login.css" />
+    <link rel="stylesheet" href="/styling/general.css" />
+    <link rel="stylesheet" href="/styling/login.css" />
 
     <title>Sign In & Register | Instance</title>
   </head>
@@ -35,15 +35,19 @@
       <!----------------- SIGN IN FORM ----------------->
 
       <div class="form-container sign-in-container">
-        <form <% action="/login/:username" %>
-          method="POST">
+        <form action="/login" method="POST">
           <h2>Sign in</h2>
           <span
             >Welcome Back! We are excited for your next Instance
             adventure!</span
           >
 
-          <input type="email" placeholder="Email" name="username" />
+          <input
+            type="email"
+            placeholder="Email"
+            name="username"
+            id="username"
+          />
           <input type="password" placeholder="Password" name="password" />
           <div><input type="submit" value="Login" /></div>
         </form>

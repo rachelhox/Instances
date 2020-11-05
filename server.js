@@ -47,28 +47,29 @@ function isLoggedIn(req, res, next) {
 }
 
 //GET the the loggedin dashboard page
-app.get("/dashboard", isLoggedIn, (req, res) => {
+app.get("/dashboard/:username", isLoggedIn, (req, res) => {
   // res.render('dashboard')
-  res.render("createProfile");
+  res.render("createProfile", { username: req.params.username });
 });
 
-app.post("/create", isLoggedIn, async (req, res) => {
+app.post("/create/:username", isLoggedIn, async (req, res) => {
   try {
     // INSERT INTO users()
+    const username = req.params.username;
     let userProfile = {
       nickname: req.body.nickname,
       photo: req.body.photo,
       gender: req.body.gender,
       description: req.body.description,
     };
-    db.update(userProfile)
-      .where("id", req.params.id)
-      .returning("*")
-      .into("users")
-      .then(function (data) {
-        res.send(data);
-      });
     console.log(req.body);
+    db("users")
+      .where("email", "=", req.params.username)
+      .update(userProfile)
+      .then(() => {
+        res.render("index", { username: username });
+      });
+    // console.log(req.body);
   } catch (err) {
     console.log(err);
   }
@@ -81,17 +82,18 @@ app.get("/login", (req, res) => {
 });
 
 //POST login
+let slug = [];
 app.post(
   "/login",
-  (req, res, next) => {
-    console.log(`hi`);
-    console.log(req.body.username);
-    next();
-  },
   passport.authenticate("local-login", {
-    successRedirect: "/dashboard",
     failureRedirect: "/error",
-  })
+  }),
+  (req, res) => {
+    console.log(`hi`);
+    slug = [];
+    slug.push(req.body.username);
+    res.redirect(`/dashboard/${slug[0]}`);
+  }
 );
 
 //POST register
