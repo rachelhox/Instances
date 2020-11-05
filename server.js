@@ -43,12 +43,14 @@ function isLoggedIn(req,res,next){
   if(req.isAuthenticated()){
     return next();
   }
-  res.redirect('/login');
+  //res.redirect('/login');
 }
 
 //GET the the loggedin dashboard page
-app.get("/dashboard",isLoggedIn,(req,res)=>{
+app.get(`/dashboard/:keyword`,isLoggedIn,(req,res)=>{
 // res.render('dashboard')
+let keyword=req.params.keyword;
+console.log(keyword);
 res.render("createProfile");
 })
 
@@ -60,9 +62,11 @@ app.get("/login",(req,res)=>{
 
 //POST login
 app.post('/login', passport.authenticate('local-login', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/error'
-}));
+  failureRedirect: '/error'}
+), function(req, res) {
+  let keyword=req.body.username
+  res.redirect(`/dashboard/${keyword}`);
+});
 
 //POST register
 app.post('/signup', passport.authenticate('local-signup', {
@@ -70,6 +74,33 @@ app.post('/signup', passport.authenticate('local-signup', {
   failureRedirect: '/error'
 }));
 
+//POST data on creating events
+app.post(`/create-events`,isLoggedIn,(req,res)=>{
+  let{categories,location,description}=req.body;
+  let errors=[];
+  try{
+    if (!categories||!location||!description){
+      errors.push({message:"Please enter all fields"});
+  }else{
+    db.insert(req.body).returning("*").into("events").then(function(data){
+      res.send(data);
+    })
+  }
+ }
+  catch(err){
+    console.log(err);
+  }
+})
+//SHOW data on creating events
+app.get("/showevents",isLoggedIn,(req,res)=>{
+  try{
+  db.select().from('events').then(function(data){
+    res.send(data);
+  })}
+  catch(err){
+    console.log(err)
+  };
+})
 
 //set up the server
 app.listen(port, () => {
