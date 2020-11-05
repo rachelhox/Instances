@@ -43,13 +43,12 @@ function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
   }
-  res.redirect("/login");
 }
 
 //GET the the loggedin dashboard page
 app.get("/dashboard/:username", isLoggedIn, (req, res) => {
   // res.render('dashboard')
-  res.render("createProfile", { username: req.params.username });
+  res.render("browseEvents", { username: req.params.username });
 });
 
 app.post("/create/:username", isLoggedIn, async (req, res) => {
@@ -67,7 +66,7 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
       .where("email", "=", req.params.username)
       .update(userProfile)
       .then(() => {
-        res.render("index", { username: username });
+        res.redirect(`/events/${username}`);
       });
     // console.log(req.body);
   } catch (err) {
@@ -75,10 +74,24 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
   }
 });
 
+app.get("/error", (req, res) => {
+  res.render("error");
+});
+
+app.get("/events/:username", (req, res) => {
+  res.render("browseEvents", { username: req.params.username });
+});
+
 //GET the login page
 app.get("/login", (req, res) => {
   // res.render('dashboard')
   res.render("loginRegister");
+});
+
+//GET the login page
+app.get("/create/:username", (req, res) => {
+  // res.render('dashboard')
+  res.render("createProfile", { username: req.params.username });
 });
 
 //POST login
@@ -100,9 +113,14 @@ app.post(
 app.post(
   "/signup",
   passport.authenticate("local-signup", {
-    successRedirect: "/login",
     failureRedirect: "/error",
-  })
+  }),
+  (req, res) => {
+    console.log(`hi`);
+    slug = [];
+    slug.push(req.body.username);
+    res.redirect(`/create/${slug[0]}`);
+  }
 );
 
 //set up the server
