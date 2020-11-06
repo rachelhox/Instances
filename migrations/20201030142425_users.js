@@ -2,7 +2,6 @@ exports.up = function (knex, Promise) {
   return knex.schema
     .createTable("users", (table) => {
       table.increments("id").primary();
-      table.string("username");
       table.string("password");
       table.string("email");
       table.string("gender");
@@ -14,12 +13,13 @@ exports.up = function (knex, Promise) {
     .then(() => {
       return knex.schema.createTable("events", (events) => {
         events.increments("id").primary();
+        events.string("name");
         events.string("categories");
         events.string("date");
         events.string("photo");
         events.string("description");
         events.string("location");
-        events.integer("max-participants");
+        events.integer("max_participants");
         events.timestamps(false, true);
       });
     })
