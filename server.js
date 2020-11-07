@@ -48,10 +48,10 @@ function isLoggedIn(req, res, next) {
 }
 
 //GET the the loggedin dashboard page
-app.get("/dashboard/:username", isLoggedIn, (req, res) => {
-  // res.render('dashboard')
-  res.render("browseEvents", { username: req.params.username });
-});
+// app.get("/dashboard/:username", isLoggedIn, (req, res) => {
+//   // res.render('dashboard')
+//   res.render("browseEvents", { username: req.params.username });
+// });
 
 app.post("/create/:username", isLoggedIn, async (req, res) => {
   try {
@@ -92,7 +92,7 @@ app.post("/create-events/:username", isLoggedIn, (req, res) => {
       .returning("*")
       .into("events")
       .then(() => {
-        res.redirect(`/dashboard/${username}`);
+        res.render("browseEvents", { username: username, data: data });
       });
   } catch (err) {
     console.log(err);
@@ -109,18 +109,33 @@ app.post("/create-events/:username", isLoggedIn, (req, res) => {
   //   //     .returning("*")
   //   //     .into("events")
   //   //     .then(() => {
-  //   //       res.redirect(`/dashboard/${username}`);
-  //   //     });
-  //   //   console.log(req.body);
-  //   // }
-  // } catch (err) {
-  //   console.log(err);
-  // }
+  //         res.redirect(`/dashboard/${username}`);
+  //         });
+  //       console.log(req.body);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
 });
 
 app.get("/create-events/:username", (req, res) => {
   const username = req.params.username;
   res.render("createEvents", { username: username });
+});
+
+app.get("/dashboard/:username", isLoggedIn, async (req, res) => {
+  try {
+    const username = req.params.username;
+    db.select()
+      .from("events")
+      .then((data) => {
+        console.log(data);
+        res.render("browseEvents", { username: username, data: data });
+        res.redirect(`/events/${username}`);
+      });
+  } catch (err) {
+    console.log(err);
+  }
 });
 
 app.get("/error", (req, res) => {
