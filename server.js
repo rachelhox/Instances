@@ -66,9 +66,17 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
     db("users")
       .where("email", "=", req.params.username)
       .update(userProfile)
-      .then(() => {
-        res.redirect(`/events/${username}`);
-      });
+      .then(
+        db
+          .select()
+          .from("events")
+          .then((data) => {
+            // console.log(data);
+            res.render("browseEvents", { username: username, data: data });
+            // res.redirect(`/events/${username}`);
+          })
+      );
+
     // console.log(req.body);
   } catch (err) {
     console.log(err);
@@ -129,9 +137,9 @@ app.get("/dashboard/:username", isLoggedIn, async (req, res) => {
     db.select()
       .from("events")
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         res.render("browseEvents", { username: username, data: data });
-        res.redirect(`/events/${username}`);
+        // res.redirect(`/events/${username}`);
       });
   } catch (err) {
     console.log(err);
