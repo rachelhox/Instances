@@ -118,10 +118,10 @@
     <div class="content">
       <div class="title">/ T a g l i n e /</div>
       <div class="row text-center filter">
+        <form class="" action="/filter-events/<%=username%>" method="POST">
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Date</div>
-          <select class="custom-select" style="width: 150px">
-            <option>Today</option>
+          <select class="custom-select" name="date" style="width: 150px">
             <option>This Week</option>
             <option>This Month</option>
           </select>
@@ -129,7 +129,7 @@
 
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Categories</div>
-          <select class="custom-select" style="width: 150px">
+          <select class="custom-select" name="categories" style="width: 150px">
             <option>Movies</option>
             <option>Eat Out</option>
             <option>Outdoors</option>
@@ -141,7 +141,7 @@
 
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Location</div>
-          <select class="custom-select" style="width: 150px">
+          <select class="custom-select" name="location" style="width: 150px">
             <option>Hong Kong</option>
             <option>Kowloon</option>
             <option>New Territories</option>
@@ -150,7 +150,7 @@
 
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Max Participants</div>
-          <select class="custom-select" style="width: 150px">
+          <select class="custom-select" name="max_participants" style="width: 150px">
             <option>2</option>
             <option>3</option>
             <option>4</option>
@@ -160,8 +160,9 @@
         </div>
 
         <div class="col-sm-12">
-          <button>Search</button>
+          <button type="submit" name="button">Search</button>
         </div>
+      </form>
       </div>
 
       <!------------ Event Cards ------------>
