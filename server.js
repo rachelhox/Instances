@@ -42,18 +42,19 @@ app.post("/logout", (req, res) => {
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     return next();
+  } else {
+    res.redirect("/error");
   }
 }
 
 //GET the the loggedin dashboard page
-app.get("/dashboard/:username", isLoggedIn, (req, res) => {
-  // res.render('dashboard')
-  res.render("browseEvents", { username: req.params.username });
-});
+// app.get("/dashboard/:username", isLoggedIn, (req, res) => {
+//   // res.render('dashboard')
+//   res.render("browseEvents", { username: req.params.username });
+// });
 
 app.post("/create/:username", isLoggedIn, async (req, res) => {
   try {
-    // INSERT INTO users()
     const username = req.params.username;
     let userProfile = {
       nickname: req.body.nickname,
@@ -65,10 +66,81 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
     db("users")
       .where("email", "=", req.params.username)
       .update(userProfile)
-      .then(() => {
-        res.redirect(`/events/${username}`);
-      });
+      .then(
+        db
+          .select()
+          .from("events")
+          .then((data) => {
+            // console.log(data);
+            res.render("browseEvents", { username: username, data: data });
+            // res.redirect(`/events/${username}`);
+          })
+      );
+
     // console.log(req.body);
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+//POST data on creating events
+app.post("/create-events/:username", isLoggedIn, (req, res) => {
+  try {
+    const username = req.params.username;
+    let eventProfile = {
+      name: req.body.name,
+      photo: req.body.photo,
+      categories: req.body.categories,
+      location: req.body.location,
+      date: req.body.date,
+      max_participants: req.body.max_participants,
+      description: req.body.description,
+    };
+    db.insert(eventProfile)
+      .returning("*")
+      .into("events")
+      .then((data) => {
+        res.render("browseEvents", { username: username, data: data });
+      });
+  } catch (err) {
+    console.log(err);
+  }
+  // try {
+  //   console.log(req.body);
+  //   // let { categories, location, description } = req.body;
+  //   // let errors = [];
+  //   // if (!categories || !location || !description) {
+  //   //   errors.push({ message: "Please enter all fields" });
+  //   // } else {
+  //   //   const username = req.params.username;
+  //   //   db.insert(req.body)
+  //   //     .returning("*")
+  //   //     .into("events")
+  //   //     .then(() => {
+  //         res.redirect(`/dashboard/${username}`);
+  //         });
+  //       console.log(req.body);
+  //     }
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+});
+
+app.get("/create-events/:username", (req, res) => {
+  const username = req.params.username;
+  res.render("createEvents", { username: username });
+});
+
+app.get("/dashboard/:username", isLoggedIn, async (req, res) => {
+  try {
+    const username = req.params.username;
+    db.select()
+      .from("events")
+      .then((data) => {
+        // console.log(data);
+        res.render("browseEvents", { username: username, data: data });
+        // res.redirect(`/events/${username}`);
+      });
   } catch (err) {
     console.log(err);
   }
