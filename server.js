@@ -75,12 +75,12 @@ app.post('/signup', passport.authenticate('local-signup', {
 }));
 
 //POST data on creating events
-app.post(`/create-events`,isLoggedIn,(req,res)=>{
+app.post(`/create-events`,async (req,res)=>{
   let{categories,location,description}=req.body;
   let errors=[];
   try{
     if (!categories||!location||!description){
-      errors.push({message:"Please enter all fields"});
+      console.log("Please enter all fields");
   }else{
     db.insert(req.body).returning("*").into("events").then(function(data){
       res.send(data);
@@ -92,7 +92,8 @@ app.post(`/create-events`,isLoggedIn,(req,res)=>{
   }
 })
 //SHOW data on creating events
-app.get("/showevents",isLoggedIn,(req,res)=>{
+app.get("/showevents",async (req,res)=>{
+
   try{
   db.select().from('events').then(function(data){
     res.send(data);
@@ -100,6 +101,29 @@ app.get("/showevents",isLoggedIn,(req,res)=>{
   catch(err){
     console.log(err)
   };
+})
+
+
+//Filter data on event using POST
+app.post("/filterevents",async (req,res)=>{
+try{
+db("events").where((qb) => {
+  if (req.body.location) {
+    qb.where('events.location', '=', req.body.location);
+  }
+
+  if (req.body.description) {
+    qb.andWhere('events.description', '=', req.body.description);
+  }
+  if (req.body.categories) {
+    qb.andWhere('events.categories', '=', req.body.categories);
+  }
+})
+.then(function(data){
+  res.send(data);})
+}catch(err){
+console.log(err)
+}
 })
 
 //set up the server
