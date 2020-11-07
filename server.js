@@ -99,7 +99,7 @@ app.post("/create-events/:username", isLoggedIn, (req, res) => {
     db.insert(eventProfile)
       .returning("*")
       .into("events")
-      .then(() => {
+      .then((data) => {
         res.render("browseEvents", { username: username, data: data });
       });
   } catch (err) {
