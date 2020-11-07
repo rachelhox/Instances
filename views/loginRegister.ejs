@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styling/general.css" />
+    <link rel="stylesheet" href="/styling/login.css" />
+
+    <title>Sign In & Register | Instance</title>
+  </head>
+
+  <body>
+    <!----------------- Header ----------------->
+    <div class="no-nav-header">
+      <div id="temporary-icon">Ins</div>
+    </div>
+
+    <!----------------- FORMS ----------------->
+
+    <div class="container" id="container">
+      <!----------------- SIGN UP FORM ----------------->
+
+      <div class="form-container sign-up-container">
+        <form action="/signup" method="POST">
+          <h2>Create Account</h2>
+          <span>You are one step away from knowing your next best friend!</span>
+
+          <!--<input type="text" placeholder="Name" />!-->
+          <input type="email" placeholder="Email" name="username" />
+          <input type="password" placeholder="Password" name="password" />
+          <div><input type="submit" value="SignUp" /></div>
+        </form>
+      </div>
+
+      <!----------------- SIGN IN FORM ----------------->
+
+      <div class="form-container sign-in-container">
+        <form action="/login" method="POST">
+          <h2>Sign in</h2>
+          <span
+            >Welcome Back! We are excited for your next Instance
+            adventure!</span
+          >
+
+          <input
+            type="email"
+            placeholder="Email"
+            name="username"
+            id="username"
+          />
+          <input type="password" placeholder="Password" name="password" />
+          <div><input type="submit" value="Login" /></div>
+        </form>
+      </div>
+
+      <!----------------- OVERLAY ----------------->
+
+      <div class="overlay-container">
+        <div class="overlay">
+          <div class="overlay-panel overlay-left">
+            <h2>Already Have an Account?</h2>
+            <p>Sign In an Instance!</p>
+            <button class="ghost" id="signIn">Sign In</button>
+          </div>
+          <div class="overlay-panel overlay-right">
+            <h2>Don't have an account?</h2>
+            <p>Register to get started!</p>
+            <button class="ghost" id="signUp">Sign Up</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="javascript/loginRegister.js"></script>
+  </body>
+</html>
