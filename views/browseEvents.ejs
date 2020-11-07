@@ -183,7 +183,40 @@
         </div>
     </div> -->
 
-      <div class="eventCardsContainer">
+      <% if (data) {%> 
+          <% data.map(x => { %>
+            <% console.log(x); %> 
+            <div class="eventCardsContainer">
+              <div class="eventCards">
+                <div class="eventImg">
+                  <div class="eventInfo">
+                    <div class="eventDate">
+                      <p><%=x.date%></p>
+                    </div>
+                    <div class="eventName">
+                      <p><%=x.name%></p>
+                    </div>
+                    <div class="eventLocation">
+                      <p><%=x.location%></p>
+                    </div>
+                    <div class="eventMaxPax">
+                      <p><%=x.max_participants%></p>
+                    </div>
+                    <div class="eventDescription">
+                      <p><%=x.description%></p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <%});   %>
+      <%  } else {%>
+        <h2>Sorry, but the results don’t match your search</h2>
+      <%  }       %>
+      <button>Join</button>
+
+
+      <!-- <div class="eventCardsContainer">
         <div class="eventCards">
           <div class="eventImg"></div>
           <div class="eventInfo">
@@ -211,6 +244,6 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
   </body>
 </html>
