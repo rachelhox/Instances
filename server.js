@@ -234,6 +234,18 @@ app.post(
   }
 );
 
+//POST imgur api
+app.post("/api/img/:id", (req, res) => {
+  const username = req.params.username;
+  const id = req.params.id;
+  console.log(req.body.image);
+  const img = req.body.image;
+  db("users")
+    .update({ photo: img })
+    .where("id", "=", req.params.id)
+    .then(console.log(req.params.id));
+});
+
 //POST filtering events based on selection
 app.post("/filter-events/:username/:id", async (req, res) => {
   try {
