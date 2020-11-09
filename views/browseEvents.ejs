@@ -43,15 +43,15 @@
       <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a class="nav-link" href="#">Browse Events</a>
-          <a class="nav-link" href="/create-events/<%=username%>"
+          <a class="nav-link" href="/create-events/<%=username%>/<%=id%>"
             >Create My Event</a
           >
           <a class="nav-link" href="#">Joined Events</a>
           <a class="nav-link" href="#">My Events</a>
           <a class="nav-link" href="#">My Profile</a>
-          <a class="nav-link" href="#" tabindex="-1" aria-disabled="true"
+          <button type="submit"><a class="nav-link" href="/logout" tabindex="-1" aria-disabled="true"
             >Log Out</a
-          >
+          ></button>
         </div>
       </div>
     </nav>
@@ -118,7 +118,7 @@
     <div class="content">
       <div class="title">/ T a g l i n e /</div>
       <div class="row text-center filter">
-        <form class="" action="/filter-events/<%=username%>" method="POST">
+        <form class="" action="/filter-events/<%=username%>/<%=id%>" method="POST">
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Date</div>
           <select class="custom-select" name="date" style="width: 150px">
@@ -142,7 +142,7 @@
         <div class="col-sm-12 col-md-3">
           <div class="cateName">Location</div>
           <select class="custom-select" name="location" style="width: 150px">
-            <option>Hong Kong</option>
+            <option>Hong Kong Island</option>
             <option>Kowloon</option>
             <option>New Territories</option>
           </select>
@@ -155,7 +155,7 @@
             <option>3</option>
             <option>4</option>
             <option>5</option>
-            <option>6+</option>
+            <option>6</option>
           </select>
         </div>
 
@@ -186,14 +186,14 @@
 
       <% if (data !== null) {%> 
           <% data.map(x => { %>
-            <% console.log(x); %> 
+            <%# console.log(x); %> 
             <div class="eventCardsContainer">
               <div class="eventCards">
                 <div class="eventImg">
                 </div>
                   <div class="eventInfo">
                     <div class="eventDate">
-                      <p><%=x.date%></p>
+                      <p><%=x.date.toDateString()%></p>
                     </div>
                     <div class="eventName">
                       <p><%=x.name%></p>
