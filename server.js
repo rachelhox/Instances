@@ -103,6 +103,7 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       date: req.body.date,
       max_participants: req.body.max_participants,
       description: req.body.description,
+      user_id: id,
     };
     db.insert(eventProfile)
       .returning("*")
@@ -146,6 +147,7 @@ app.get("/dashboard/:username/:id", isLoggedIn, async (req, res) => {
     const id = req.params.id;
     db.select()
       .from("events")
+      .whereNot("events.user_id", "=", id)
       .then((data) => {
         // console.log(data);
         res.render("browseEvents", { username: username, id: id, data: data });
@@ -169,10 +171,17 @@ app.get("/events/:username/:id", (req, res) => {
 
 //GET the profile page
 app.get("/profile/:username/:id", (req, res) => {
-  res.render("browseProfile", {
-    username: req.params.username,
-    id: req.params.id,
-  });
+  db("users")
+    .select()
+    .where("id", "=", req.params.id)
+    .then((data) => {
+      console.log(data);
+      res.render("browseProfile", {
+        username: req.params.username,
+        id: req.params.id,
+        data: data,
+      });
+    });
 });
 
 //GET the login page

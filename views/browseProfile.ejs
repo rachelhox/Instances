@@ -44,7 +44,11 @@
               <div class="col-6">
                 <div class="card">
                   <div class="card-header">
-                    <img src="<%# %>" alt="Profile Image" class="profile-img" />
+                    <img
+                      src="<%=data[0].photo %>"
+                      alt="Profile Image"
+                      class="profile-img"
+                    />
                   </div>
                   <div class="card-body">
                     <a
@@ -54,13 +58,9 @@
                       data-target="#modalProfilePictureForm"
                       >Edit Profile Picture</a
                     >
-                    <p class="userName"><%# %>EJS Numpty Dumpty (NickName)</p>
-                    <p class="gender"><%# %>EJS Gender</p>
-                    <p class="desc">
-                      <%# %> EJS Lorem ipsum is placeholder text commonly used
-                      in the graphic, print, and publishing industries for
-                      previewing layouts and visual mockups.
-                    </p>
+                    <p class="userName"><%=data[0].nickname %></p>
+                    <p class="gender"><%=data[0].gender %></p>
+                    <p class="desc"><%=data[0].description %></p>
                   </div>
                   <div class="card-footer">
                     <div class="col vr">
