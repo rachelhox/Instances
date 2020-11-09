@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
+    <title>My Events | Instances</title>
+
+    <link rel="stylesheet" href="styling/general.css">
+    <link rel="stylesheet" href="styling/myEvents.css"/>
+</head>
+<body>
+
+<%# ------------- Nav Bar ------------- %>
+    <%- include('partials/nav'); %>
+
+<%# ------------- Page Title ------------- %>
+
+<div class="maxWidthContainer">
+    <div class="titleContainer">
+                <h2>Joined Events</h1>
+        </div>
+
+<%# ------------- Event Card ------------- %>
+
+    <div class="largeCardContainer">
+            <div class="row cardContainer">
+                <div class="col-8">
+                    <div class="row rows">
+    <%# ------------- Small Cards for each Category ------------- %>
+
+                        <div class=" col-5 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    Event
+                                </div>
+                                <div class="col-12 dashCardContentContainer">
+                                        <div class="dashCardContent1">
+                                            <%# !!! DATA FROM SERVER !!! %>
+                                            Nancy Sit Ka Yin Live Concert 2020
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-7 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    Event Photo
+                                </div>
+                                <div class="photoCard col-12">
+                                </div>
+                               <%# <i class="far fa-image iconPlacing fa-9x"></i> %>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row rows">
+                        <div class="col-4 dashCardContainer">
+                            <div class="cards">
+
+                                <%#  <i class="far fa-calendar-minus iconPlacing fa-9x"></i> %>
+                                    <div class="col-12 dashCardTitle">
+                                        <%# !!! DATA FROM SERVER !!! %>
+                                        Date
+                                    </div>
+                                    <div class="dashCardContentContainer">
+                                        <div class="col-12 dashCardContent2">
+                                            <%# !!! DATA FROM SERVER !!! %>
+                                            12 DEC
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                        <div class="col-4 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    Location
+                                </div>
+                                <div class="dashCardContentContainer">
+                                    <div class="col-12 dashCardContent2">
+                                        <%# !!! DATA FROM SERVER !!! %>
+                                        HONG KONG
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    Category
+                                </div>
+                                <div class="dashCardContentContainer">
+                                    <div class="col-12 dashCardContent2">
+                                        <%# !!! DATA FROM SERVER !!! %>
+                                        MUSIC
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row rows">
+                        <div class="col-4 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    Max Pax
+                                </div>
+                                <div class="dashCardContentContainer">
+                                    <div class="col-12 dashCardContent2">
+                                        <%# !!! DATA FROM SERVER !!! %>
+                                        5
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-8 dashCardContainer">
+                            <div class="cards">
+                                <div class="col-12 dashCardTitle">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    Description
+                                </div>
+                                <div class="col-12 dashCardContent3">
+                                    <%# !!! DATA FROM SERVER !!! %>
+                                    I love Sit Ka Yin.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+<%# ------------- Right Column ------------- %>
+
+                <div class="col-4">
+                    <div class="row rightRows">
+
+        <%# ------------- Joined List Card ------------- %>
+
+                            <div class="col-12 dashCardContainer">
+                                <div class="cards">
+                                    <div class="col-12 listTitle">
+                                        Joined Members
+                                    </div>
+                                    <div>
+                                        <ul class="memberList">
+
+                <%# ------------- One Row of the List ------------- %>
+                                            <li>
+                                                <div class="row memberRow">
+                                                    <div class="col-9">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
+                                                    <div class="col-3">
+                                                        <div class="memberPic">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                <%# ------------- One Row of the List ------------- %>
+                                            <li>
+                                                <div class="row memberRow">
+                                                    <div class="col-9">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
+                                                    <div class="col-3 ">
+                                                        <div class="memberPic">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+                <%# ------------- One Row of the List ------------- %>
+                                            <li>
+                                                <div class="row memberRow">
+                                                    <div class="col-9">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
+                                                    <div class="col-3">
+                                                        <div class="memberPic">
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </li>
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                    </div>
+                    <a href="" class="btn" data-toggle="modal" data-target="">Leave Event</a>
+
+                </div>
+            </div>
+    </div>
+   
+</body>
+</html>
