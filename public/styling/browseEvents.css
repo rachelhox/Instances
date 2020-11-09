@@ -28,6 +28,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 1.5rem;
 }
 
 .cateName{
@@ -44,18 +45,29 @@ color: rgb(255, 55, 100);
 display: flex;
 align-items: center;
 justify-content: center;
-margin: 40px;
+padding: 40px;
+padding-top: 80px;
+padding-bottom:0px;
 font-weight: bolder;
 font-size: 30px;
 color: rgb(255, 55, 100);
 }
 
+.filterContainer {
+    margin: auto;
+}
+
+.rowButton{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
 /* -------------------- EVENT CARDS -------------------- */
 
 .eventCards {
-    width:80%;
+    width:60%;
     max-width: 80%;
-    height: 370px;
+    height: 330px;
     padding: 30px;
     background-color: #fff;
     box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
@@ -134,7 +146,7 @@ color: rgb(255, 55, 100);
     text-decoration: none;
 } */
 
-button {
+.button {
     border-radius: 20px;
     border: 1px solid #FF4B2B;
     background-color: rgb(255, 55, 100);
@@ -148,11 +160,33 @@ button {
     transition: transform 80ms ease-in;
 }
 
-button:active {
+.button:active {
     transform: scale(0.95);
 }
 
-button:focus {
+.button:focus {
+    outline: none;
+}
+
+.joinButton{
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 30px;
+    margin: 10px 0 0 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.joinButton:active {
+    transform: scale(0.95);
+}
+
+.joinButton:focus {
     outline: none;
 }
 /* 

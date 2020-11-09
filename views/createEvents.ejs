@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="/styling/general.css">
+    <link rel="stylesheet" href="/styling/createEvents.css">
+
+    <title>Create Profile | Instance</title>
+</head>
+
+<body>
+
+    <!----------------- Header ----------------->
+    <div class="no-nav-header">
+        <div id="temporary-icon">
+            Just a place for the Nav bar
+        </div>
+    </div>
+
+    <!----------------- Form ----------------->
+    <div class="title">
+        / T a g l i n e / or "Create Your Event"
+     </div>
+    <div class="profileContainer">
+        <div class="">
+            <form class="" action="/create-events/<%=username%>/<%=id%>" method="POST">
+                <div>
+                    <label for="Name">Event Name</label>
+                    <input type="text" id="eventName" name="name" required>
+                </div>
+                <div>
+                    <label for="eventPhoto">Event Photo</label>
+                    <input type="file" id="eventPhoto" name="photo">
+                    <input type="submit" value="Upload">
+                </div>
+                <div>
+                    <label for="email">Categories</label>
+                    <select id="eventCate" name="categories" required>
+                        <option value="Movies">Movies</option>
+                        <option value="Eat Out">Eat Out</option>
+                        <option value="Outdoors">Outdoors</option>
+                        <option value="Music">Music</option>
+                        <option value="Local Tours">Local Tours</option>
+                        <option value="Night Out">Night Out</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="location">Location</label>
+                    <select id="location" name="location" required>
+                        <option value="Hong Kong Island">Hong Kong Island</option>
+                        <option value="Kowloon">Kowloon</option>
+                        <option value="New Territories">New Territories</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="date">Date and Time</label>
+                    <input type="datetime-local" id="EventDateAndTime" name="date" required>
+    
+                </div>
+                <div>
+                    <label for="maxpax">Maximum Participants</label>
+                    <select id="EventMaxPax" name="max_participants" required>
+                        <option value="2">2 persons</option>
+                        <option value="3">3 persons</option>
+                        <option value="4">4 persons</option>
+                        <option value="5">5 persons</option>
+                        <option value="6">6 persons</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="description">Description</label>
+                    <input type="text" id="EventDescription" name="description" maxlength="300" placeholder="Max length: 300 characters" required>
+                </div>
+                <button type="submit" name="button">Create Event</button>
+            </form>
+        </div>
+
+<script src="/javascript/general.js"></script>
+
+</body>
+
+</html>

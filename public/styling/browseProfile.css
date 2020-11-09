@@ -1,0 +1,304 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEE;
+}
+
+/* ---- HORIZONTAL AND VERTICAL CENTER ALIGNMENT --- */
+
+.outerAlignDiv {
+    display: table;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .middleAlignDiv {
+    display: table-cell;
+    vertical-align: middle;
+  }
+
+  .innerAlignDiv {
+    margin-left: auto;
+    margin-right: auto;
+    display:flex;
+    justify-content: center;
+    max-width: 1200px;
+  }
+
+/* ---- Main Card Styling ---- */
+
+.card {
+    width: 450px;
+    min-height: 550px;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 3px 30px rgba(0, 0, 0, .14);
+    /* color: #444; */
+    text-align: center;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+.card .card-header {
+    position: relative;
+    height: 100px;
+    background-color: #fff;
+    border: 0px;
+}
+
+.card .card-header .profile-img {
+    width: 220px;
+    height: 220px;
+    border-radius: 1000px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    border: 6px solid rgb(255, 55, 100);;
+    box-shadow: 0 0 20px rgba(255, 55, 100, .5);
+}
+
+.card .card-body {
+    padding: 10px 40px;
+    line-height: 1.5rem;
+}
+
+.card .card-body .userName {
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    padding: 0.8rem;
+    padding-top: 1rem;
+}
+
+.card .card-body .gender {
+    font-size: 1rem;
+    color: #777;
+}
+
+.card .card-body .desc {
+    font-size: 1rem;
+    font-weight: lighter;
+}
+
+
+.card .card-footer {
+    display: table;
+    width: 100%;
+    height: 15%;
+    border-top: 1px solid rgb(255, 55, 100);
+    background-color: #fff;
+    position: absolute;
+    bottom:0;
+}
+
+.card .card-footer .col {
+    display: table-cell;
+    padding: 5px 0px 5px 15px;
+    font-size: 0.8rem;
+    color: rgb(255, 55, 100);
+    vertical-align: middle;
+    margin: auto;
+}
+
+.card .card-footer .count {
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+.card .card-footer p {
+    margin-bottom: 0;
+    line-height: 2rem;
+}
+
+.vr {
+    border-right: 1px solid rgb(255, 55, 100);
+}
+
+.btn {
+    /* border-radius: 20px; */
+    border-radius: 5px;
+    /* border: 1px solid #FF4B2B; */
+    background: linear-gradient(to right, rgba(255, 15, 123, 0.75),rgba(250, 55, 50, 0.75), rgba(255, 150, 21, 0.75));
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 22px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: auto;
+}
+
+.btnProPic{
+    border-radius: 5px;
+    background: linear-gradient(to right, rgba(255, 15, 123, 0.75),rgba(250, 55, 50, 0.75), rgba(255, 150, 21, 0.75));
+    color: #FFFFFF;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 10px 15px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: auto;
+}
+
+.btnSave{
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+/* ---------- Modal ---------- */
+
+.modal-content {
+    border: 5px solid rgba(255, 15, 123, 0.8);
+}
+
+/* ---------- Cards on the Right ---------- */
+.rightContainer{
+margin: auto;
+}
+
+.cardSmall{
+        width: 450px;
+        min-height: 250px;
+        margin: auto;
+        background-color: #fff;
+        box-shadow: 0 3px 30px rgba(0, 0, 0, .14);
+        /* color: #444; */
+        text-align: center;
+        font-size: 1rem;
+        border-radius: 10px;
+}
+.cardFutureEvents{
+    margin-bottom: 50px;
+}
+
+.smallTitle{
+    font-size: 1.2rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 0.4rem 0;
+    background: rgb(255, 55, 100,0.9);
+}
+
+.eventList {
+    padding: 1rem 0 0 1rem;
+    overflow: scroll;
+    list-style: none;
+    text-align: left;
+    justify-content: center;
+}
+
+.eventRow{
+    padding-bottom: 0.6rem;
+}
+
+.eventStatus{
+    border-left: 1px solid rgb(255, 55, 100,0.9);
+}
+
+/* ---------- change sizes for smaller screens ---------- */
+
+@media screen and (max-width: 1024px){
+    .card{
+        max-width: 400px;
+        min-height: 500px;
+    }
+
+    .card .card-header .profile-img {
+        width: 120px;
+        height: 120px;
+        transform: translate(-50%, -30%);
+
+    }
+
+    .card .card-footer .col {
+        font-size: 0.6rem;
+    }
+    .card .card-footer .count {
+        font-size: 0.8rem;
+        font-weight: bold;
+    }
+}
+
+/* @media screen and (max-width: 1008px) {
+    .card {
+        width: 96%;
+        margin: 300px auto;
+        min-height: 400px;
+        max-height: 400px;
+    }
+
+    .card .card-body {
+        padding: 10px 20px;
+    }
+
+    .card .card-footer .col {
+        padding: 0 10px;
+    }
+
+    .card .card-body .desc {
+        font-size: 16px;
+        padding: 0;
+        margin: 0;
+    }
+
+    .card .card-footer .count {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .card {
+        width: 96%;
+        /* margin: 300px auto; */
+        /* height: 70%;
+        max-height: 70vh;
+    }
+
+    .card .card-body {
+        padding: 10px 20px;
+    }
+
+    .card .card-header .profile-img {
+        width: 150px;
+        height: 150px;
+    }
+
+    .card .card-header {
+        height: 60px;
+    }
+
+    .card .card-footer .col {
+        padding: 0 5px;
+    }
+
+    .card .card-body .desc {
+        font-size: 12px;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .card .card-footer .count {
+        display: block;
+        margin-bottom: 5px;
+        font-size: 14px;
+    } 
+} */
