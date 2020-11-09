@@ -167,13 +167,21 @@ app.get("/events/:username/:id", (req, res) => {
   });
 });
 
+//GET the profile page
+app.get("/profile/:username/:id", (req, res) => {
+  res.render("browseProfile", {
+    username: req.params.username,
+    id: req.params.id,
+  });
+});
+
 //GET the login page
 app.get("/login", (req, res) => {
   // res.render('dashboard')
   res.render("loginRegister");
 });
 
-//GET the login page
+//GET the login page after signing up
 app.get("/create/:username/:id", (req, res) => {
   // res.render('dashboard')
   res.render("createProfile", {
