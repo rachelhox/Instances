@@ -72,6 +72,7 @@ body {
     font-weight: 600;
     text-transform: uppercase;
     padding: 0.8rem;
+    padding-top: 1rem;
 }
 
 .card .card-body .gender {
@@ -127,6 +128,19 @@ body {
     font-size: 12px;
     font-weight: bold;
     padding: 22px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    margin: auto;
+}
+
+.btnProPic{
+    border-radius: 5px;
+    background: linear-gradient(to right, rgba(255, 15, 123, 0.75),rgba(250, 55, 50, 0.75), rgba(255, 150, 21, 0.75));
+    color: #FFFFFF;
+    font-size: 9px;
+    font-weight: bold;
+    padding: 10px 15px;
     letter-spacing: 1px;
     text-transform: uppercase;
     transition: transform 80ms ease-in;

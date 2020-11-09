@@ -32,6 +32,7 @@
                                 <img src="<%# %>" alt="Profile Image" class="profile-img">
                             </div>
                             <div class="card-body">
+                                <a href="" class="btnProPic" data-toggle="modal" data-target="#modalProfilePictureForm">Edit Profile Picture</a>
                                 <p class="userName"><%# %>EJS Numpty Dumpty (NickName)</p>
                                 <p class="gender"><%# %>EJS Gender</p>
                                 <p class="desc"><%# %> EJS Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.</p>
@@ -44,7 +45,7 @@
                                 <div class="col">
                                     <!-- <button type="submit" name="button">Edit Profile</button> -->
                                     <div class="text-center">
-                                        <a href="" class="btn" data-toggle="modal" data-target="#modalRegisterForm">Edit Profile</a>
+                                        <a href="" class="btn" data-toggle="modal" data-target="#modalProfileForm">Edit Profile</a>
                                     </div>
                                 </div>
                             </div>
@@ -103,9 +104,9 @@
         
 
 
-<%# --------------- EDIT MODAL --------------- %>
+<%# --------------- EDIT PROFILE MODAL --------------- %>
 
-          <div class="modal fade" id="modalRegisterForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        <div class="modal fade" id="modalProfileForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
           aria-hidden="true">
           <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
@@ -124,7 +125,10 @@
                 <div class="md-form mb-5">
                   <i class="fas fa-envelope prefix grey-text"></i>
                   <label data-error="wrong" data-success="right" for="orangeForm-email">Gender</label>
-                  <input type="email" id="orangeForm-email" class="form-control validate" placeholder="Fetch data from server <%# %>">
+                    <select type="email" id="orangeForm-email" class="form-control validate" placeholder="Fetch data from server <%# %>">
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                    </select>
                 </div>
         
                 <div class="md-form mb-4">
@@ -140,6 +144,36 @@
             </div>
           </div>
         </div>
+
+    <%# --------------- EDIT PROFILE PICTURE MODAL --------------- %>
+
+    <div class="modal fade" id="modalProfilePictureForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div class="modal-header text-center">
+            <h4 class="modal-title w-100 font-weight-bold">Edit Your Profile Picture</h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+            </div>
+
+            <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                    <i class="fas fa-user prefix grey-text"></i>
+                    <label data-error="wrong" data-success="right" for="orangeForm-name">Upload Your Photo</label>
+                    <input type="File" id="orangeForm-name" class="form-control validate" placeholder="">
+                </div>
+    
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+            <button class="btn btn-deep-orange btnSave" type="submit" onclick="uploadPhoto()" id="uploadPhoto" value="Upload">Save Profile Picture</button>
+            </div>
+        </div>
+        </div>
+    </div>
+
     </div>
 
         
