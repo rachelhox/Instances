@@ -30,9 +30,18 @@
           <input type="text" id="profileNickname" name="nickname" required />
         </div>
         <div>
-          <label for="profilePhoto">Profile Picture</label>
+          <!-- <label for="profilePhoto">Profile Picture</label>
           <input type="file" id="profilePhoto" name="photo" />
-          <input type="submit" value="Upload" />
+          <!-- <button
+            type="submit"
+            onclick="uploadPhoto()"
+            id="uploadPhoto"
+            value="Upload"
+          ></button> -->
+          <!-- <div style="height: 0px; overflow: hidden">
+            <input type="file" id="fileInput" name="fileInput" />
+          </div>
+          <button type="button" onclick="uploadPhoto()">choose file</button>  -->
         </div>
         <div>
           <label for="gender">Gender</label>
@@ -56,5 +65,6 @@
         <button type="submit" name="button">Create Profile</button>
       </form>
     </div>
+    <script src="javascript/createProfile.js"></script>
   </body>
 </html>
