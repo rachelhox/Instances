@@ -38,6 +38,10 @@ app.post("/logout", (req, res) => {
   res.redirect("/login");
 });
 
+app.get("/logout", (req, res) => {
+  res.redirect("/");
+});
+
 //function to check if the user is authenicated
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -53,9 +57,10 @@ function isLoggedIn(req, res, next) {
 //   res.render("browseEvents", { username: req.params.username });
 // });
 
-app.post("/create/:username", isLoggedIn, async (req, res) => {
+app.post("/create/:username/:id", isLoggedIn, async (req, res) => {
   try {
     const username = req.params.username;
+    const id = req.params.id;
     let userProfile = {
       nickname: req.body.nickname,
       photo: req.body.photo,
@@ -71,9 +76,11 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
           .select()
           .from("events")
           .then((data) => {
-            // console.log(data);
-            res.render("browseEvents", { username: username, data: data });
-            // res.redirect(`/events/${username}`);
+            res.render("browseEvents", {
+              username: username,
+              id: id,
+              data: data,
+            });
           })
       );
 
@@ -84,9 +91,10 @@ app.post("/create/:username", isLoggedIn, async (req, res) => {
 });
 
 //POST data on creating events
-app.post("/create-events/:username", isLoggedIn, (req, res) => {
+app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
   try {
     const username = req.params.username;
+    const id = req.params.id;
     let eventProfile = {
       name: req.body.name,
       photo: req.body.photo,
@@ -100,7 +108,7 @@ app.post("/create-events/:username", isLoggedIn, (req, res) => {
       .returning("*")
       .into("events")
       .then((data) => {
-        res.render("browseEvents", { username: username, data: data });
+        res.render("browseEvents", { username: username, id: id, data: data });
       });
   } catch (err) {
     console.log(err);
@@ -126,19 +134,21 @@ app.post("/create-events/:username", isLoggedIn, (req, res) => {
   //   }
 });
 
-app.get("/create-events/:username", (req, res) => {
+app.get("/create-events/:username/:id", (req, res) => {
   const username = req.params.username;
-  res.render("createEvents", { username: username });
+  const id = req.params.id;
+  res.render("createEvents", { username: username, id: id });
 });
 
-app.get("/dashboard/:username", isLoggedIn, async (req, res) => {
+app.get("/dashboard/:username/:id", isLoggedIn, async (req, res) => {
   try {
     const username = req.params.username;
+    const id = req.params.id;
     db.select()
       .from("events")
       .then((data) => {
         // console.log(data);
-        res.render("browseEvents", { username: username, data: data });
+        res.render("browseEvents", { username: username, id: id, data: data });
         // res.redirect(`/events/${username}`);
       });
   } catch (err) {
@@ -150,8 +160,11 @@ app.get("/error", (req, res) => {
   res.render("error");
 });
 
-app.get("/events/:username", (req, res) => {
-  res.render("browseEvents", { username: req.params.username });
+app.get("/events/:username/:id", (req, res) => {
+  res.render("browseEvents", {
+    username: req.params.username,
+    id: req.params.id,
+  });
 });
 
 //GET the login page
@@ -161,9 +174,12 @@ app.get("/login", (req, res) => {
 });
 
 //GET the login page
-app.get("/create/:username", (req, res) => {
+app.get("/create/:username/:id", (req, res) => {
   // res.render('dashboard')
-  res.render("createProfile", { username: req.params.username });
+  res.render("createProfile", {
+    username: req.params.username,
+    id: req.params.id,
+  });
 });
 
 //POST login
@@ -173,27 +189,74 @@ app.post(
   passport.authenticate("local-login", {
     failureRedirect: "/error",
   }),
-  (req, res) => {
-    console.log(`hi`);
-    slug = [];
-    slug.push(req.body.username);
-    res.redirect(`/dashboard/${slug[0]}`);
+  async (req, res) => {
+    try {
+      const id = await db("users")
+        .select("id")
+        .where("email", "=", req.body.username);
+      slug = [];
+      slug.push(req.body.username);
+      slug.push(Object.values(id[0]));
+      res.redirect(`/dashboard/${slug[0]}/${slug[1]}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
 
 //POST register
+let api = [];
 app.post(
   "/signup",
   passport.authenticate("local-signup", {
     failureRedirect: "/error",
   }),
-  (req, res) => {
-    console.log(`hi`);
-    slug = [];
-    slug.push(req.body.username);
-    res.redirect(`/create/${slug[0]}`);
+  async (req, res) => {
+    try {
+      const id = await db("users")
+        .select("id")
+        .where("email", "=", req.body.username);
+      api = [];
+      api.push(req.body.username);
+      api.push(Object.values(id[0]));
+      res.redirect(`/create/${api[0]}/${api[1]}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 );
+
+//POST filtering events based on selection
+app.post("/filter-events/:username/:id", async (req, res) => {
+  try {
+    const username = req.params.username;
+    const id = req.params.id;
+    db("events")
+      .where((qb) => {
+        if (req.body.location) {
+          console.log(req.body.location);
+          qb.where("events.location", "=", req.body.location);
+        }
+        if (req.body.categories) {
+          console.log(req.body.categories);
+          qb.andWhere("events.categories", "=", req.body.categories);
+        }
+        if (req.body.max_participants) {
+          console.log(req.body.max_participants);
+          qb.andWhere(
+            "events.max_participants",
+            "<=",
+            req.body.max_participants
+          );
+        }
+      })
+      .then((data) => {
+        res.render("browseEvents", { username: username, id: id, data: data });
+      });
+  } catch (err) {
+    console.log(err);
+  }
+});
 
 //set up the server
 app.listen(port, () => {

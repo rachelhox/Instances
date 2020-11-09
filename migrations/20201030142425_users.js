@@ -15,11 +15,13 @@ exports.up = function (knex, Promise) {
         events.increments("id").primary();
         events.string("name");
         events.string("categories");
-        events.string("date");
+        events.dateTime("date");
         events.string("photo");
         events.string("description");
         events.string("location");
         events.integer("max_participants");
+        events.integer("user_id").unsigned();
+        events.foreign("user_id").references("users.id");
         events.timestamps(false, true);
       });
     })
