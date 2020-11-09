@@ -54,3 +54,31 @@ h2 {
     color: rgb(255, 55, 100);
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+/* ---------------  NAV BAR STYLING --------------- */
+.navbar {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.05), 0 6px 20px 0 rgba(0, 0, 0, 0.05);
+}
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.navbar-nav a{
+    margin:0 15px;
+    color:rgb(255, 55, 100);
+}
+
+.bg-transparent {
+    background: transparent;
+}
+
+.bg-default {
+    background:rgb(255, 55, 100);
+    color: #eee;
+}
+
+.navbar-nav-scrolled a{
+    margin:0 15px;
+    color: #EEE;
+}
