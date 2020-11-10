@@ -91,10 +91,14 @@ app.post("/create/:username/:id", isLoggedIn, async (req, res) => {
 });
 
 //POST data on creating events
+let endpoint = [];
 app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
   try {
+    endpoint = [];
     const username = req.params.username;
     const id = req.params.id;
+    endpoint.push(username);
+    endpoint.push(id);
     let eventProfile = {
       name: req.body.name,
       photo: req.body.photo,
@@ -105,15 +109,27 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       description: req.body.description,
       user_id: id,
     };
+    //const data = await
     db.insert(eventProfile)
       .returning("*")
       .into("events")
       .then((data) => {
-        res.render("browseEvents", { username: username, id: id, data: data });
+        endpoint.push(data);
+        console.log(endpoint);
+        //res.render("browseEvents", { username: username, id: id, data: data });
+        res.redirect(`/dashboard/${endpoint[0]}/${endpoint[1]}`);
       });
   } catch (err) {
     console.log(err);
   }
+
+  // app.get("/dashboard/:username/:id/:data", (req, res) => {
+  //   const username = req.params.username;
+  //   const id = req.params.id;
+  //   const data = [req.params.data];
+  //   console.log(data[0]);
+  //   res.render("browseEvents", { username: username, id: id, data: data });
+  // });
   // try {
   //   console.log(req.body);
   //   // let { categories, location, description } = req.body;
