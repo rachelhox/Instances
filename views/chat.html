@@ -9,47 +9,58 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
 
-    <link rel="stylesheet" href="/styling/style.css" />
+    <link rel="stylesheet" href="/styling/chatRoomStyle.css" />
     <title>Chatroom</title>
   </head>
   <body>
     <div class="all">
-      <div class="header">
-        <h1 class="title">LiveChat</h1>
-        <a href="/" class="btn btn-light"> Leave Room </a>
-      </div>
-      <div class="container">
-        <div class="chat-main row">
-          <div class="sidebar col-3">
-            <p class="sidebarheaders">Room Name:</p>
-            <p id="room-name"></p>
-            <p class="sidebarheaders">Users:</p>
-            <ul id="users"></ul>
+      <div class="centerDiv">
+            <div class="header">
+            <h1 class="title divTitle">
+              <div>
+                <i class="fas fa-kiwi-bird chatKiwi"></i>
+              </div>
+              <div>
+                LiveChat
+              </div>
+              </h1>
+            <a href="/" class="btn btn-light leaveRoom"> Leave Room </a>
           </div>
-          <div class="chat-box col-9">
-            <div class="chat-messages">
-              <div class="message">
-                <p class="meta"><span></span></p>
-                <p class="text"></p>
+          <div class="container">
+            <div class="chat-main row">
+              <div class="sidebar col-3">
+                <p class="sidebarheaders">Room Name:</p>
+                <p id="room-name"></p>
+                <p class="sidebarheaders">Users:</p>
+                <ul id="users"></ul>
+              </div>
+              <div class="chat-box col-9">
+                <div class="chat-messages">
+                  <div class="message">
+                    <p class="meta"><span></span></p>
+                    <p class="text"></p>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
+          <div class="chat-msg-container">
+            <form id="chat-msg">
+              <input
+                id="msg"
+                type="text"
+                placeholder="Enter Message"
+                required
+                autocomplete="off"
+              />
+              <button class="btn btn-light sendBtn">Send</button>
+            </form>
+          </div>
         </div>
       </div>
-      <div class="chat-msg-container">
-        <form id="chat-msg">
-          <input
-            id="msg"
-            type="text"
-            placeholder="Enter Message"
-            required
-            autocomplete="off"
-          />
-          <button class="btn btn-light">Send</button>
-        </form>
-      </div>
-    </div>
+      
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
