@@ -215,7 +215,12 @@
                                                         <%# !!! DATA FROM SERVER !!! %>
                                                     </div>
                                                 </div>
-                                                <a class="col-1.5 iconContainer" href="" type="submit" data-target=""> <i class="fas fa-check"></i> <%# !!! DATA FROM SERVER !!! %></a>
+                                                <form 
+                                                    action="/changestatus/<%=username%>/<%=id%>/<%=eventId%>"
+                                                    method="post">
+                                                    <input style="visibility:hidden" name="requesting_users_id" value=<%=y.id%>></input>
+                                                    <button type="submit" name="button">Join</button>
+                                                   </form>
                                                 <a class="col-1.5 iconContainer" href="" type="submit" data-target=""> <i class="fas fa-times"></i> <%# !!! DATA FROM SERVER !!! %></a>
                                             </div>
                                         </li>
