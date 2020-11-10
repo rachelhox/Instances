@@ -92,6 +92,7 @@
             <div class="eventCardsContainer">
               <div class="eventCards">
                 <div class="eventImg">
+                  <img src="<%=x.photo%>" />
                 </div>
                   <div class="eventInfo">
                     <div class="eventDate">
@@ -109,7 +110,12 @@
                     <div class="eventDescription">
                       <p><%=x.description%></p>
                     </div>
-                    <button class="joinButton">Join</button>
+                    <form 
+                    action="/join/<%=username%>/<%=id%>"
+                    method="post">
+                    <input style="visibility:hidden" name="joinevents" value=<%=x.id%>></input>
+                    <button type="submit" name="button">Join</button>
+                    </form>
                   </div> 
               </div>
             </div>

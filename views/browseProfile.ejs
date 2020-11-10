@@ -69,7 +69,7 @@
                         Joined Events
                       </p>
                       <p>
-                        <span class="count"><%#createdEvents%>Number EJS</span>
+                        <span class="count"><%=eventData.length %></span>
                         Events Hosted
                       </p>
                     </div>
@@ -88,47 +88,39 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-6">
                 <div class="row rightContainer">
                   <div class="col-12">
                     <div class="cardSmall cardFutureEvents">
-                      <div class="smallTitle">Coming Events</div>
-                      <ul class="eventList">
+                      <div class="smallTitle">My Hosted Events</div>
+                      <ul class="eventList" style="overflow: scroll">
+                        <% if (eventData.length > 0) {%> <% eventData.map(x => {
+                        %>
                         <li>
-                          <a class="row eventRow">
-                            <div class="col-8">
-                              EJS Event Name <%#EventName%>
-                            </div>
+                          <a
+                            class="row eventRow"
+                            href="/myEvents/<%=username%>/<%=id%>/<%=x.id%>"
+                          >
+                            <div class="col-8"><%=x.name %></div>
                             <div class="col-4 eventStatus">
-                              EJS Accepted <%#Status%>
+                              <%=(x.date).toDateString() %>
                             </div>
                           </a>
                         </li>
-                        <li>
-                          <div class="row eventRow">
-                            <div class="col-8">
-                              EJS Another Events Name <%#EventName%>
-                            </div>
-                            <div class="col-4 eventStatus">
-                              EJS Rejected <%#Status%>
-                            </div>
-                          </div>
-                        </li>
+                        <%}); %> <% } %>
                       </ul>
                     </div>
                   </div>
+
                   <div class="col-12">
                     <div class="cardSmall cardPastEvents">
                       <div class="smallTitle">Past Events</div>
                       <ul class="eventList">
                         <li>
                           <div class="row eventRow">
-                            <div class="col-8">
-                              EJS Event Name <%#EventName%>
-                            </div>
-                            <div class="col-4 eventStatus">
-                              EJS Accepted <%#Status%>
-                            </div>
+                            <div class="col-8">y.name</div>
+                            <div class="col-4 eventStatus">y.date</div>
                           </div>
                         </li>
                         <li>
@@ -150,7 +142,6 @@
           </div>
         </div>
       </div>
-
       <%# --------------- EDIT PROFILE MODAL --------------- %>
 
       <div
@@ -163,75 +154,87 @@
       >
         <div class="modal-dialog modal-dialog-centered" role="document">
           <div class="modal-content">
-            <div class="modal-header text-center">
-              <h4 class="modal-title w-100 font-weight-bold">
-                Edit Your Profile
-              </h4>
-              <button
-                type="button"
-                class="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body mx-3">
-              <div class="md-form mb-5">
-                <i class="fas fa-user prefix grey-text"></i>
-                <label
-                  data-error="wrong"
-                  data-success="right"
-                  for="orangeForm-name"
-                  >Nickname</label
+            <form
+              class="filterContainer"
+              action="/edit-profile/<%=username%>/<%=id%>"
+              method="POST"
+            >
+              <div class="modal-header text-center">
+                <h4 class="modal-title w-100 font-weight-bold">
+                  Edit Your Profile
+                </h4>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
                 >
-                <input
-                  type="text"
-                  id="orangeForm-name"
-                  class="form-control validate"
-                  placeholder="Fetch data from server <%# %>"
-                />
+                  <span aria-hidden="true">&times;</span>
+                </button>
               </div>
-              <div class="md-form mb-5">
-                <i class="fas fa-envelope prefix grey-text"></i>
-                <label
-                  data-error="wrong"
-                  data-success="right"
-                  for="orangeForm-email"
-                  >Gender</label
-                >
-                <select
-                  type="email"
-                  id="orangeForm-email"
-                  class="form-control validate"
-                  placeholder="Fetch data from server <%# %>"
-                >
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                </select>
-              </div>
+              <div class="modal-body mx-3">
+                <div class="md-form mb-5">
+                  <i class="fas fa-user prefix grey-text"></i>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    for="orangeForm-name"
+                    >Nickname</label
+                  >
+                  <input
+                    type="text"
+                    id="orangeForm-name"
+                    class="form-control validate"
+                    name="nickname"
+                    placeholder="New Nickname"
+                  />
+                </div>
+                <div class="md-form mb-5">
+                  <i class="fas fa-envelope prefix grey-text"></i>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    for="orangeForm-email"
+                    >Gender</label
+                  >
+                  <select
+                    type="text"
+                    name="gender"
+                    class="form-control validate"
+                    placeholder=""
+                  >
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </select>
+                </div>
 
-              <div class="md-form mb-4">
-                <i class="fas fa-lock prefix grey-text"></i>
-                <label
-                  data-error="wrong"
-                  data-success="right"
-                  for="orangeForm-pass"
-                  >Description</label
-                >
-                <input
-                  type="password"
-                  id="orangeForm-pass"
-                  class="form-control validate"
-                  placeholder="Fetch data from server <%# %>"
-                />
+                <div class="md-form mb-4">
+                  <i class="fas fa-lock prefix grey-text"></i>
+                  <label
+                    data-error="wrong"
+                    data-success="right"
+                    for="orangeForm-pass"
+                    >Description</label
+                  >
+                  <input
+                    type="text"
+                    name="description"
+                    id="orangeForm-pass"
+                    class="form-control validate"
+                    placeholder="Update your description"
+                  />
+                </div>
               </div>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button class="btn btn-deep-orange btnSave" type="submit">
-                Save Profile
-              </button>
-            </div>
+              <div class="modal-footer d-flex justify-content-center">
+                <button
+                  class="btn btn-deep-orange btnSave"
+                  name="button"
+                  type="submit"
+                >
+                  Save Profile
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
