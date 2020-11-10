@@ -233,8 +233,8 @@ app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
   const anotherdata = await db("users_events")
     .select("user_id")
     .where("users_events.event_id", "=", eventId)
-    //new line of trying 
-    .andWhere("users_events.acceptance","=",false);
+    //new line of trying
+    .andWhere("users_events.acceptance", "=", false);
   //console.log(anotherdata);
   let finalArray = [];
   for (let i = 0; i < anotherdata.length; i++) {
@@ -246,17 +246,18 @@ app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
   //console.log(finalArray);
 
   //new line of trying
-  const accepteddata= await db("users_events")
-  .select("user_id")
-  .where("users_events.event_id","=",eventId)
-  .andWhere("users_events.acceptance","=",true);
-  let accetpedArray=[]
-  for(let b=0;b<accepteddata.length;b++){
-    let finalacceptdata=await db("users").select("*").where("users.id","=",accepteddata[b].user_id)
+  const accepteddata = await db("users_events")
+    .select("user_id")
+    .where("users_events.event_id", "=", eventId)
+    .andWhere("users_events.acceptance", "=", true);
+  let accetpedArray = [];
+  for (let b = 0; b < accepteddata.length; b++) {
+    let finalacceptdata = await db("users")
+      .select("*")
+      .where("users.id", "=", accepteddata[b].user_id);
     accetpedArray.push(...finalacceptdata);
   }
   console.log(accetpedArray);
-
 
   res.render("MyEvents", {
     username: req.params.username,
@@ -264,7 +265,7 @@ app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
     data: data,
     eventId: req.params.eventId,
     waitingdata: finalArray,
-    accepteddata: accetpedArray
+    accepteddata: accetpedArray,
   });
 });
 
@@ -438,19 +439,25 @@ app.get("/myEvents/:username/:id", isLoggedIn, async (req, res) => {
 });
 
 //chaging the status of acceptance for event request
-app.post("/changestatus/:username/:id/:eventId",isLoggedIn,async (req,res)=>{
-  const username = req.params.username;
-  const id = req.params.id;
-  let request_id=req.body.requesting_users_id;
-  console.log(request_id)
-  let update={
-    acceptance:true
+app.post(
+  "/changestatus/:username/:id/:eventId",
+  isLoggedIn,
+  async (req, res) => {
+    const username = req.params.username;
+    const id = req.params.id;
+    let request_id = req.body.requesting_users_id;
+    console.log(request_id);
+    let update = {
+      acceptance: true,
+    };
+    const changedata = await db("users_events")
+      .where("users_events.user_id", "=", request_id)
+      .update(update);
+    res.redirect("back");
+    // res.render({changeddata: changedata})
+    //need to render something here
   }
-  const changedata= await db("users_events").where("users_events.user_id","=",request_id).update(update)
-  //need to render something here
-
-})
-
+);
 
 //set up the server
 app.listen(port, () => {

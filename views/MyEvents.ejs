@@ -158,39 +158,20 @@
                                         <ul class="memberList">
 
                 <%# ------------- One Row of the List ------------- %>
+                <% if (accepteddata !== null) {%> 
+                    <% accepteddata.map(z => { %>
                                             <li>
                                                 <div class="row memberRow">
-                                                    <div class="col-7">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
+                                                    <div class="col-7"><%=z.nickname%></div>
                                                     <div class="col-3">
-                                                        <div class="memberPic">
+                                                        <div class="memberPic" style="background-image: url(<%=z.photo%>);">
                                                         </div>
                                                     </div>
                                                     <a class="col-2 iconContainer" type="submit" href="" data-target=""> <i class="fas fa-times"></i> <%#UserPicURL%></a>
                                                 </div>
                                             </li>
-                <%# ------------- One Row of the List ------------- %>
-                                            <li>
-                                                <div class="row memberRow">
-                                                    <div class="col-7">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
-                                                    <div class="col-3 ">
-                                                        <div class="memberPic">
-                                                        </div>
-                                                    </div>
-                                                    <a class="col-2 iconContainer" type="submit" href="" data-target=""> <i class="fas fa-times"></i> </a>
-                                                </div>
-                                            </li>
-                <%# ------------- One Row of the List ------------- %>
-                                            <li>
-                                                <div class="row memberRow">
-                                                    <div class="col-7">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
-                                                    <div class="col-3">
-                                                        <div class="memberPic">
-                                                        </div>
-                                                    </div>
-                                                    <a class="col-2 iconContainer" type="submit" href="" data-target=""> <i class="fas fa-times"></i> </a>
-                                                </div>
-                                            </li>
-
+                                            <%});   }%>
+                
                                         </ul>
                                     </div>
                                 </div>
@@ -224,7 +205,6 @@
                                                 <a class="col-1.5 iconContainer" href="" type="submit" data-target=""> <i class="fas fa-times"></i> <%# !!! DATA FROM SERVER !!! %></a>
                                             </div>
                                         </li>
-
                                     </ul>
                                 </div>
                                 <%});   }%>
