@@ -185,7 +185,11 @@ app.get("/events/:username/:id", (req, res) => {
 });
 
 //GET the profile page
-app.get("/profile/:username/:id", (req, res) => {
+app.get("/profile/:username/:id", async (req, res) => {
+  let eventData = await db("events")
+    .select()
+    .where("user_id", "=", req.params.id);
+  console.log(eventData);
   db("users")
     .select()
     .where("id", "=", req.params.id)
@@ -195,6 +199,7 @@ app.get("/profile/:username/:id", (req, res) => {
         username: req.params.username,
         id: req.params.id,
         data: data,
+        eventData: eventData,
       });
     });
 });
@@ -300,6 +305,26 @@ app.post("/filter-events/:username/:id", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+//get all the events created by the user
+app.get("/myevents/:username/:id", isLoggedIn, (req, res) => {
+  const username = req.params.username;
+  const id = req.params.id;
+  db("events")
+    .select("*")
+    .where("events.user_id", "=", id)
+    .then((data) => {
+      res.render(
+        //so the ejs is called MyEvents.ejs
+        "MyEvents",
+        {
+          username: username,
+          id: id,
+          data: data,
+        }
+      );
+    });
 });
 
 //set up the server
