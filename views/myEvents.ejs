@@ -212,14 +212,19 @@
                             </div>
                         </div>
                 </div>
-
-                    <a href="" class="btn" data-toggle="modal" data-target="#modalRegisterForm">Edit Event</a>
-                    <form 
-                    action="/enterChatroom"
-                    method="get">
-                    <input style="visibility:hidden" name="joinevents" value=""></input>
-                    <input type="submit" value="Join Chatroom" name="button" />
-                    </form>
+                <div class="row">
+                    <div class="col-6">
+                        <a href="" class="btn" data-toggle="modal" data-target="#modalRegisterForm">Edit Event</a>
+                    </div>
+                    <div class="col-6">
+                        <form action="/enterChatroom" method="get">
+                        <input name="joinevents" class="d-none" value=""/>
+                        <input type="submit" class="btn" value="Join Chat" name="button"/>
+                        </form>
+                    </div>
+                </div>
+                    
+                    
                 </div>
             </div>
     </div>
