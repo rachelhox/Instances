@@ -15,27 +15,24 @@
 <body>
 
     <!----------------- Header ----------------->
-    <div class="no-nav-header">
+    <!-- <div class="no-nav-header">
         <div id="temporary-icon">
             Just a place for the Nav bar
         </div>
-    </div>
+    </div> -->
+    <i class="fas fa-kiwi-bird navKiwi"></i
+        ><a class="navbar-brand" href="/"></a>
 
     <!----------------- Form ----------------->
     <div class="title">
-        / T a g l i n e / or "Create Your Event"
+        / Create Your Event /
      </div>
     <div class="profileContainer">
-        <div class="">
+        <div class="formContent">
             <form class="" action="/create-events/<%=username%>/<%=id%>" method="POST">
                 <div>
                     <label for="Name">Event Name</label>
                     <input type="text" id="eventName" name="name" required>
-                </div>
-                <div>
-                    <label for="eventPhoto">Event Photo</label>
-                    <input type="file" id="eventPhoto" name="photo">
-                    <input type="submit" value="Upload">
                 </div>
                 <div>
                     <label for="email">Categories</label>

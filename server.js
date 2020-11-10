@@ -415,7 +415,7 @@ app.post("/join/:username/:id", isLoggedIn, (req, res) => {
   let user_id = req.params.id;
   let event_id = req.body.joinevents;
   console.log(user_id);
-  console.log("waiting for approlval");
+  console.log("waiting for approval");
   console.log(event_id);
   db("users_events")
     .insert({ user_id: user_id, event_id: event_id, acceptance: false })

@@ -277,6 +277,15 @@ h2 {
   transition: transform 80ms ease-in;
 }
 
+label {
+  margin-bottom: 0;
+}
+
+form {
+  display: flex;
+  align-items: center;
+}
+
 .modal-content {
   border: 5px solid rgba(255, 15, 123, 0.8);
 }
