@@ -184,7 +184,7 @@ app.get("/events/:username/:id", (req, res) => {
   });
 });
 
-//GET the profile page
+// GET the profile page
 app.get("/profile/:username/:id", async (req, res) => {
   let eventData = await db("events")
     .select()
@@ -204,13 +204,13 @@ app.get("/profile/:username/:id", async (req, res) => {
     });
 });
 
-//GET the login page
+// GET the login page
 app.get("/login", (req, res) => {
   // res.render('dashboard')
   res.render("loginRegister");
 });
 
-//GET the login page after signing up
+// GET the login page after signing up
 app.get("/create/:username/:id", (req, res) => {
   // res.render('dashboard')
   res.render("createProfile", {
@@ -249,7 +249,7 @@ app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
 
 });
 
-//POST login
+// POST login
 let slug = [];
 app.post(
   "/login",
@@ -271,7 +271,7 @@ app.post(
   }
 );
 
-//POST register
+// POST register
 let api = [];
 app.post(
   "/signup",
@@ -293,7 +293,7 @@ app.post(
   }
 );
 
-//POST imgur api for profile picture
+// POST imgur api for profile picture
 app.post("/api/img/:id", (req, res) => {
   const username = req.params.username;
   const id = req.params.id;
@@ -305,7 +305,7 @@ app.post("/api/img/:id", (req, res) => {
     .then(console.log(req.params.id));
 });
 
-//POST imgur api for event photo
+// POST imgur api for event photo
 app.post("/api/image/:name", (req, res) => {
   const name = req.body.name;
   const image = req.body.image;
@@ -318,7 +318,27 @@ app.post("/api/image/:name", (req, res) => {
   res.send("DONE");
 });
 
-//POST filtering events based on selection
+// POST editing the profile
+app.post("/edit-profile/:username/:id", async (req, res) => {
+  try {
+    const username = req.params.username;
+    const id = req.params.id;
+    let newUserProfile = {
+      nickname: req.body.nickname,
+      gender: req.body.gender,
+      description: req.body.description,
+    };
+    const data = await db("users")
+      .update(newUserProfile)
+      .select("*")
+      .where("id", "=", id);
+    res.redirect("back");
+  } catch (err) {
+    console.log(err);
+  }
+});
+
+// POST filtering events based on selection
 app.post("/filter-events/:username/:id", async (req, res) => {
   try {
     const username = req.params.username;
