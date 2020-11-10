@@ -9,39 +9,57 @@
       integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
       crossorigin="anonymous"
     />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
+
 
     <link rel="stylesheet" href="/styling/style.css" />
     <title>LiveChat</title>
   </head>
   <body>
     <div class="all">
-      <div class="header">
-        <h1 class="title">LiveChat</h1>
+
+        <div class="centerDiv">
+              <div class="header">
+                    <h1 class="title divTitle">
+                      <div>
+                        <i class="fas fa-kiwi-bird chatKiwi"></i>
+                      </div>
+                      <div>
+                        LiveChat
+                      </div>
+                      </h1>
+                  </div>
+                  <div class="side">
+                    <form action="/joinChatroom">
+                      <div class="form-control">
+                        <label for="username">Username</label>
+                        <input
+                          type="text"
+                          name="username"
+                          id="username"
+                          placeholder="Enter username"
+                          required
+                        />
+                      </div>
+                      <div class="form-control">
+                        <label for="room">Room</label>
+                        <select name="room" id="room">
+                          <option value="Room 1">Room 1</option>
+                          <option value="Room 2">Room 2</option>
+                          <option value="Room 3">Room 3</option>
+                        </select>
+                      </div>
+                      <div class="centerBtn">
+                        <input type="submit" class="btn joinBtn" value="Join Chat" />
+                      </div>
+                    </form>
+                  </div>
+                </div>
+
       </div>
-      <div class="side">
-        <form action="/joinChatroom">
-          <div class="form-control">
-            <label for="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              placeholder="Enter username"
-              required
-            />
-          </div>
-          <div class="form-control">
-            <label for="room">Room</label>
-            <select name="room" id="room">
-              <option value="Room 1">Room 1</option>
-              <option value="Room 2">Room 2</option>
-              <option value="Room 3">Room 3</option>
-            </select>
-          </div>
-          <input type="submit" class="btn" value="Join Chat" />
-        </form>
-      </div>
-    </div>
+    
+
+
     <script
       src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"

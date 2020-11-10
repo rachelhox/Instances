@@ -1,10 +1,12 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;700;800&display=swap");
-
+*{
+margin: 0;
+padding:0;
+}
 
 body{
     font-size: 16px;
-	background-color: #eee;
-	
+    background-color: rgba(rgb(39, 39, 39), green, blue, alpha);
+    overflow: hidden;
 }
 
 /**************** index page ***************/
@@ -16,27 +18,20 @@ ul{
 }
 
 .all {
-	max-width: 1000px;
-	min-height: 100vh !important;
-	margin: 30px auto;
-	overflow: hidden;
-	font-family: "Montserrat", sans-serif;
-	display: flex;
-	align-items: center;
+    max-width: 1000px;
+    min-height: 100vh;
+	margin: auto;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .centerDiv{
-	padding: 5rem;
-}
-
-.divTitle{
-	display: flex;
-}
-
-.chatKiwi{
-	font-size:2rem;
-	color: #eee;
-	padding-right: 0.5rem;
+    border: 1px solid rgb(255, 55, 100);
+    border-radius: 5px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    min-width: 1000px;
 }
 
 .header {
@@ -77,37 +72,27 @@ ul{
 	}
 }
 
-
-.joinBtn {
-    border-radius: 5px;
-    background: linear-gradient(to right, rgba(255, 15, 123, 0.75),rgba(250, 55, 50, 0.75), rgba(255, 150, 21, 0.75));
-    color: #FFFFFF;
-    font-size: 9px;
-    font-weight: bold;
-    padding: 10px 15px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-	transition: transform 80ms ease-in;
-	width: 840px;
-}
-
-.centerBtn{
+.divTitle{
 	display: flex;
-	justify-content: center;
 }
 
-button:active {
-    transform: scale(0.95);
+.sendBtn{
+    color:#fff;
+    background-color: rgb(255, 55, 100);
+    font-weight: bold;
 }
 
-button:focus {
-    outline: none;
+.chatKiwi{
+	font-size:2rem;
+	color: #eee;
+	padding-right: 0.5rem;
 }
 
-
-.centerDiv{
-	min-width:1000px;
-	/* min-height:30rem; */
+.leaveRoom{
+    color: rgb(255, 55, 100);
+    background-color: #fff;
+    border-radius:2rem;
+    font-size: 0.8rem;
 }
 
 .sidebar{
@@ -131,14 +116,15 @@ button:focus {
 
 .chat-messages {
 	padding: 30px;
-	max-height: 500px;
+    max-height: 700px;
+    min-height: 700px;
 	overflow-y: scroll;
 }
 
 .message{
 	padding: 10px;
 	margin-bottom: 15px;
-	background-color: lightgray;
+	background-color: rgb(255, 167, 186);
 	border-radius: 5px;
 	overflow-wrap: break-word;
 }
