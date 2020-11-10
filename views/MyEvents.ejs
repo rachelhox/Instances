@@ -32,7 +32,6 @@
 
 <% if (data !== null) {%> 
     <% data.map(x => { %>
-      <%# console.log(x); %> 
 
     <div class="largeCardContainer">
             <div class="row cardContainer">
@@ -77,7 +76,7 @@
                                         Date
                                     </div>
                                     <div class="dashCardContentContainer">
-                                        <div class="col-12 dashCardContent2">
+                                        <div class="col-12 dashCardContent2" id="dateFont">
                                             <%=x.date%>
                                         </div>
                                     </div>
@@ -241,17 +240,17 @@ aria-hidden="true">
       <div class="md-form mb-3">
 
         <label data-error="wrong" data-success="right" for="">Event Name</label>
-        <input type="text" id="" class="form-control validate" required placeholder="Fetch data from server <%# %>">
+        <input type="text" class="form-control validate" required placeholder="Fetch data from server <%# %>">
       </div>
 
       <div class="md-form mb-3">
         <label data-error="wrong" data-success="right" for="">Date</label>
-        <input type="date" id="" class="form-control validate" placeholder="Fetch data from server <%# %>">
+        <input type="date" class="form-control validate" placeholder="Fetch data from server <%# %>">
       </div>
 
       <div class="md-form mb-3">
         <label data-error="wrong" data-success="right" for="">Location</label>
-        <select type="text" id="" class="form-control validate" placeholder="Fetch data from server <%# %>">
+        <select type="text" class="form-control validate" placeholder="Fetch data from server <%# %>">
             <option value="Hong Kong">Hong Kong</option>
             <option value="Kowloon">Kowloon</option>
             <option value="New Territories">New Territories</option>
@@ -260,7 +259,7 @@ aria-hidden="true">
 
       <div class="md-form mb-3">
         <label data-error="wrong" data-success="right" for="">Category</label>
-        <select type="text" id="" class="form-control validate" <%# %>>
+        <select type="text" class="form-control validate" <%# %>>
             <option value="Movies">Movies</option>
             <option value="Eat Out">Eat Out</option>
             <option value="Outdoors">Outdoors</option>
@@ -272,7 +271,7 @@ aria-hidden="true">
 
       <div class="md-form mb-3">
         <label data-error="wrong" data-success="right" for="">Max Pax</label>
-        <select type="text" id="" class="form-control validate">
+        <select type="text" class="form-control validate">
             <option value="2">2 persons</option>
             <option value="3">3 persons</option>
             <option value="4">4 persons</option>
@@ -283,7 +282,7 @@ aria-hidden="true">
 
       <div class="md-form mb-3">
         <label data-error="wrong" data-success="right" for="">Description</label>
-        <input type="text" id="" class="form-control validate" placeholder="Fetch data from server <%# %>">
+        <input type="text" class="form-control validate" placeholder="Fetch data from server <%# %>">
       </div>
 
     </div>
@@ -313,7 +312,7 @@ aria-hidden="true">
                 <div class="md-form mb-5">
                     <i class="fas fa-user prefix grey-text"></i>
                     <label data-error="wrong" data-success="right" >Upload Your Photo</label>
-                    <input type="File" id="" class="form-control validate" placeholder="">
+                    <input type="File"   class="form-control validate" placeholder="">
                 </div>
 
             </div>
