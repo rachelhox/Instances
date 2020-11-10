@@ -227,14 +227,26 @@ app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
     .select("*")
     .where("events.user_id", "=", id)
     .where("events.id", "=", eventId);
-  console.log("myEvent" + data);
-  console.log(data);
+  //console.log("myEvent" + data);
+  console.log("HIII")
+  //console.log(data);
+  const anotherdata=await db('users_events').select("user_id").where("users_events.event_id","=",eventId);
+  console.log(anotherdata);
+  let finalArray=[];
+  for(let i =0;i<anotherdata.length;i++){
+   let finaldata=await db("users").select("*").where("users.id","=",anotherdata[i].user_id)
+  finalArray.push(...finaldata)
+  }
+  console.log(finalArray)
+
   res.render("MyEvents", {
     username: req.params.username,
     id: req.params.id,
     data: data,
     eventId: req.params.eventId,
+    waitingdata:finalArray
   });
+
 });
 
 //POST login
@@ -351,6 +363,8 @@ app.post("/join/:username/:id", isLoggedIn, (req, res) => {
     .insert({ user_id: user_id, event_id: event_id, acceptance: false })
     .then(res.redirect(`/dashboard/${username}/${id}`));
 });
+
+
 
 // get all the events created by the user
 app.get("/myEvents/:username/:id", isLoggedIn, async (req, res) => {
