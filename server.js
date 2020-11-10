@@ -219,6 +219,24 @@ app.get("/create/:username/:id", (req, res) => {
   });
 });
 
+// GET the myEvents page for specific event
+app.get("/myEvents/:username/:id/:eventId", isLoggedIn, async (req, res) => {
+  const id = req.params.id;
+  const eventId = req.params.eventId;
+  const data = await db("events")
+    .select("*")
+    .where("events.user_id", "=", id)
+    .where("events.id", "=", eventId);
+  console.log("myEvent" + data);
+  console.log(data);
+  res.render("MyEvents", {
+    username: req.params.username,
+    id: req.params.id,
+    data: data,
+    eventId: req.params.eventId,
+  });
+});
+
 //POST login
 let slug = [];
 app.post(
@@ -263,7 +281,7 @@ app.post(
   }
 );
 
-//POST imgur api
+//POST imgur api for profile picture
 app.post("/api/img/:id", (req, res) => {
   const username = req.params.username;
   const id = req.params.id;
@@ -273,6 +291,19 @@ app.post("/api/img/:id", (req, res) => {
     .update({ photo: img })
     .where("id", "=", req.params.id)
     .then(console.log(req.params.id));
+});
+
+//POST imgur api for event photo
+app.post("/api/image/:name", (req, res) => {
+  const name = req.body.name;
+  const image = req.body.image;
+  console.log(`posting api to event photo`);
+  db("events")
+    .update({ photo: image })
+    .where("name", "=", name)
+    .then(console.log(name));
+
+  res.send("DONE");
 });
 
 //POST filtering events based on selection
@@ -307,24 +338,52 @@ app.post("/filter-events/:username/:id", async (req, res) => {
   }
 });
 
-//get all the events created by the user
-app.get("/myevents/:username/:id", isLoggedIn, (req, res) => {
+// POST join events
+app.post("/join/:username/:id", isLoggedIn, (req, res) => {
   const username = req.params.username;
   const id = req.params.id;
-  db("events")
-    .select("*")
-    .where("events.user_id", "=", id)
-    .then((data) => {
-      res.render(
-        //so the ejs is called MyEvents.ejs
-        "MyEvents",
-        {
-          username: username,
-          id: id,
-          data: data,
-        }
-      );
-    });
+  let user_id = req.params.id;
+  let event_id = req.body.joinevents;
+  console.log(user_id);
+  console.log("waiting for approlval");
+  console.log(event_id);
+  db("users_events")
+    .insert({ user_id: user_id, event_id: event_id, acceptance: false })
+    .then(res.redirect(`/dashboard/${username}/${id}`));
+});
+
+// get all the events created by the user
+app.get("/myEvents/:username/:id", isLoggedIn, async (req, res) => {
+  const username = req.params.username;
+  const id = req.params.id;
+
+  const data = await db("events").select("*").where("events.user_id", "=", id);
+  console.log(data);
+  // let hostedEventData = [];
+  // for (let i = 0; i < data.length; i++) {
+  //   const data1 = await db("users_events")
+  //     .select("*")
+  //     .where("users_events.event_id", "=", data[i]);
+  //   hostedEventData.push(data1);
+  // }
+  // console.log("HI");
+  // console.log(hostedEventData);
+
+  // const requestedData = await db("users_events")
+  //   .select("user_id")
+  //   .where("event_id", "=", data[i].id);
+
+  // console.log(requestedData);
+
+  res.render(
+    //so the ejs is called MyEvents.ejs
+    "MyEvents",
+    {
+      username: username,
+      id: id,
+      data: data,
+    }
+  );
 });
 
 //set up the server

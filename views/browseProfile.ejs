@@ -98,7 +98,10 @@
                         <% if (eventData.length > 0) {%> <% eventData.map(x => {
                         %>
                         <li>
-                          <a class="row eventRow">
+                          <a
+                            class="row eventRow"
+                            href="/myEvents/<%=username%>/<%=id%>/<%=x.id%>"
+                          >
                             <div class="col-8"><%=x.name %></div>
                             <div class="col-4 eventStatus">
                               <%=(x.date).toDateString() %>
