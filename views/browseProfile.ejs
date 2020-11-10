@@ -44,7 +44,11 @@
               <div class="col-6">
                 <div class="card">
                   <div class="card-header">
-                    <img src="<%# %>" alt="Profile Image" class="profile-img" />
+                    <img
+                      src="<%=data[0].photo %>"
+                      alt="Profile Image"
+                      class="profile-img"
+                    />
                   </div>
                   <div class="card-body">
                     <a
@@ -54,13 +58,9 @@
                       data-target="#modalProfilePictureForm"
                       >Edit Profile Picture</a
                     >
-                    <p class="userName"><%# %>EJS Numpty Dumpty (NickName)</p>
-                    <p class="gender"><%# %>EJS Gender</p>
-                    <p class="desc">
-                      <%# %> EJS Lorem ipsum is placeholder text commonly used
-                      in the graphic, print, and publishing industries for
-                      previewing layouts and visual mockups.
-                    </p>
+                    <p class="userName"><%=data[0].nickname %></p>
+                    <p class="gender"><%=data[0].gender %></p>
+                    <p class="desc"><%=data[0].description %></p>
                   </div>
                   <div class="card-footer">
                     <div class="col vr">
@@ -246,8 +246,12 @@
         aria-labelledby="myModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+        <div
+          class="modal-dialog modal-dialog-centered"
+          id="modal-dialog"
+          role="document"
+        >
+          <div class="modal-content" id="profilePictureModal">
             <div class="modal-header text-center">
               <h4 class="modal-title w-100 font-weight-bold">
                 Edit Your Profile Picture
@@ -280,16 +284,10 @@
                 />
               </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button
-                class="btn btn-deep-orange btnSave"
-                type="submit"
-                id="uploadPhoto"
-                value="Upload"
-              >
-                Upload Profile Picture
-              </button>
-            </div>
+            <div
+              class="modal-footer d-flex justify-content-center"
+              id="uploadPhoto"
+            ></div>
           </div>
         </div>
       </div>

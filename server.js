@@ -76,11 +76,12 @@ app.post("/create/:username/:id", isLoggedIn, async (req, res) => {
           .select()
           .from("events")
           .then((data) => {
-            res.render("browseEvents", {
-              username: username,
-              id: id,
-              data: data,
-            });
+            res.redirect(`/dashboard/${username}/${id}`);
+            // res.render("browseEvents", {
+            //   username: username,
+            //   id: id,
+            //   data: data,
+            // });
           })
       );
 
@@ -91,10 +92,14 @@ app.post("/create/:username/:id", isLoggedIn, async (req, res) => {
 });
 
 //POST data on creating events
+let endpoint = [];
 app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
   try {
+    endpoint = [];
     const username = req.params.username;
     const id = req.params.id;
+    endpoint.push(username);
+    endpoint.push(id);
     let eventProfile = {
       name: req.body.name,
       photo: req.body.photo,
@@ -103,17 +108,32 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       date: req.body.date,
       max_participants: req.body.max_participants,
       description: req.body.description,
+<<<<<<< HEAD
       user_id:id
+||||||| merged common ancestors
+=======
+      user_id: id,
+>>>>>>> master
     };
+    //const data = await
     db.insert(eventProfile)
       .returning("*")
       .into("events")
       .then((data) => {
-        res.render("browseEvents", { username: username, id: id, data: data });
+        //res.render("browseEvents", { username: username, id: id, data: data });
+        res.redirect(`/dashboard/${endpoint[0]}/${endpoint[1]}`);
       });
   } catch (err) {
     console.log(err);
   }
+
+  // app.get("/dashboard/:username/:id/:data", (req, res) => {
+  //   const username = req.params.username;
+  //   const id = req.params.id;
+  //   const data = [req.params.data];
+  //   console.log(data[0]);
+  //   res.render("browseEvents", { username: username, id: id, data: data });
+  // });
   // try {
   //   console.log(req.body);
   //   // let { categories, location, description } = req.body;
@@ -147,8 +167,9 @@ app.get("/dashboard/:username/:id", isLoggedIn, async (req, res) => {
     const id = req.params.id;
     db.select()
       .from("events")
+      .whereNot("events.user_id", "=", id)
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         res.render("browseEvents", { username: username, id: id, data: data });
         // res.redirect(`/events/${username}`);
       });
@@ -170,10 +191,17 @@ app.get("/events/:username/:id", (req, res) => {
 
 //GET the profile page
 app.get("/profile/:username/:id", (req, res) => {
-  res.render("browseProfile", {
-    username: req.params.username,
-    id: req.params.id,
-  });
+  db("users")
+    .select()
+    .where("id", "=", req.params.id)
+    .then((data) => {
+      console.log(data);
+      res.render("browseProfile", {
+        username: req.params.username,
+        id: req.params.id,
+        data: data,
+      });
+    });
 });
 
 //GET the login page
