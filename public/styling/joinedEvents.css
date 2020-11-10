@@ -1,0 +1,275 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #EEE;
+}
+
+.maxWidthContainer {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* -------------- Title -------------- */
+
+.titleContainer {
+    padding-top: 4rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+h2 {
+    color: rgb(255, 55, 100);
+}
+
+/* -------------- Event Card -------------- */
+
+.photoCard{
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FxtygMniyh8E%2Fmaxresdefault.jpg&f=1&nofb=1");
+    height: 100%;
+    background-size: cover;
+}
+
+.largeCardContainer {
+    padding: 1rem;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+}
+
+.rows {
+    height: 200px;
+    padding: 10px 0 10px 0;
+}
+
+.cardContainer {
+    width: 900px;
+    height: 600px;
+    /* border: 0.1rem solid rgb(255, 55, 100);
+    background:
+    linear-gradient(217deg, rgba(255,15,123,.9), rgba(255,15,123,0) 70.71%), 
+    linear-gradient(127deg, rgba(250, 55, 50, 0.9), rgba(250,55,50,0) 70.71%),
+    linear-gradient(336deg, rgba(255, 150, 21, 0.9), rgba(255,150,21,0) 70.71%); */
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    background: linear-gradient(-45deg, rgba(255,15,123), rgba(250, 55, 50), rgba(255, 150, 21));
+    background-size: 300% 300%;
+    -webkit-animation: gradientBG 3s ease infinite;
+            animation: gradientBG 3s ease infinite;
+}
+
+@-webkit-keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.cards {
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    border-radius: 2.5px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    display: relative;
+    overflow: hidden;
+}
+
+
+
+.dashCardContainer {
+    padding: 0 10px 0 10px;
+    margin:0;
+}
+
+/* --------------- Dash Cards --------------- */
+
+
+.dashCardTitle {
+    padding-top: 0.4rem;
+    font-weight: normal;
+    color: rgb(60, 60, 60);
+}
+
+.dashCardContentContainer{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 80%;
+}
+
+.dashCardContent1 {
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: rgb(255, 55, 100);
+}
+
+.dashCardContent2 {
+    font-weight: bolder;
+    font-size: 2.5rem;
+    color: rgb(255, 55, 100);
+    text-align: center;
+    margin: auto;
+}
+
+.dashCardContent3 {
+    font-weight: bolder;
+    font-size: 1rem;
+    color: rgb(255, 55, 100);
+}
+
+/* .hideOverflow {
+    overflow: hidden;
+} */
+
+/* .overflowContainer{
+    overflow: hidden;
+} */
+
+.iconPlacing{
+    position: absolute;
+    bottom:-0.5rem;
+    right:-0.5rem;
+    color: rgba(255, 55, 100, 0.35);
+    display: block;
+}
+
+/* ------------ Right Side ------------ */
+
+.rightRows{
+    height: 550px;
+    padding: 10px 0 10px 0;
+}
+
+.listTitle{
+    text-align: center;
+    margin:auto;
+    margin-bottom: 5px;
+    padding: 0.5rem;
+    font-weight: bold;
+    color: rgb(255, 55, 100);
+    border-bottom: 1px solid rgb(255, 55, 100);
+}
+/* .listContainer{
+    width:255;
+} */
+
+/* .listRow{
+    width:100%;
+} */
+
+.listPadding{
+    padding-left: 0.2rem;
+    padding-right: 0.2rem;
+}
+
+.zeroPadding{
+    padding-left: 0;
+    padding-right:0;
+}
+
+.memberList {
+    padding: 0.3rem 0.5rem 0.3rem 0.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    list-style: none;
+    text-align: left;
+    overflow: visible;
+}
+
+.memberRow{
+    height:2.7rem;
+    padding-bottom: 3rem;
+    border-bottom: 0.5px dashed rgb(121, 121, 121);
+
+}
+
+.memberPic{
+    border-radius: 50%;
+    border: 2px solid rgb(255, 55, 100);
+    width: 2.7rem;
+    height: 2.7rem;
+    background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpbs.twimg.com%2Fprofile_images%2F558016134012624896%2FKdKrx0oC.jpeg&f=1&nofb=1");
+    background-size: cover;
+    transition: transform .5s ease-in-out;
+    /* padding-left: 0;
+    padding-right: 0; */
+}
+
+.memberPic:hover{
+transform: scale(3.5);
+z-index: 100;
+position: absolute;
+}
+
+.iconContainer{
+    margin:auto;
+}
+
+.fas {
+    color: rgb(255, 55, 100);
+}
+/* ------------ Modal ------------ */
+
+.btn {
+    /* border-radius: 20px; */
+    border-radius: 20px;
+    /* border: 1px solid #FF4B2B; */
+    background: #fff;
+    color: rgb(255, 55, 100);
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px 50px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+    display: flex;
+    justify-content: center;
+}
+
+.editPhotoBtn{
+    padding: 0;
+    border: 0.5px solid rgb(255, 55, 100);
+    height: 20px;
+    width: 40px;
+    font-size: 0.7rem;
+    position: absolute;
+    right:0.3rem;
+    top:0.3rem;
+}
+
+.btnSave{
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.modal-content {
+    border: 5px solid rgba(255, 15, 123, 0.8);
+}

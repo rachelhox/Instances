@@ -32,8 +32,10 @@ h2 {
 
 .photoCard {
   background-image: url("https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.ytimg.com%2Fvi%2FxtygMniyh8E%2Fmaxresdefault.jpg&f=1&nofb=1");
+  background-position: 50% 52%;
   height: 100%;
   background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .largeCardContainer {

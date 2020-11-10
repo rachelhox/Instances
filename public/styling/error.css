@@ -26,6 +26,11 @@ h1 {
 p {
     letter-spacing: 10px;
 }
+
+.errorKiwi{
+	color: rgb(255, 55, 100);
+    font-size: 2rem;
+}
 @-webkit-keyframes gradientBG {
 	0% {
 		background-position: 0% 50%;
