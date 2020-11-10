@@ -97,16 +97,13 @@
                 </div>
                   <div class="eventInfo">
                     <div class="eventDate">
-                      <p><%=x.date%></p>
+                      <p><%=x.date.toDateString()%></p>
                     </div>
                     <div class="eventName">
                       <p><%=x.name%></p>
                     </div>
                     <div class="eventLocation">
                       <p><%=x.location%></p>
-                    </div>
-                    <div class="eventMaxPax">
-                      <p><%=x.max_participants%></p>
                     </div>
                     <div class="eventDescription">
                       <p><%=x.description%></p>
@@ -115,7 +112,7 @@
                     action="/join/<%=username%>/<%=id%>"
                     method="post">
                     <input style="visibility:hidden" name="joinevents" value=<%=x.id%>></input>
-                    <button type="submit" name="button">Join</button>
+                    <button class="button" type="submit" name="button">Join</button>
                     </form>
                   </div> 
               </div>

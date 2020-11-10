@@ -415,7 +415,7 @@ app.post("/join/:username/:id", isLoggedIn, (req, res) => {
   let user_id = req.params.id;
   let event_id = req.body.joinevents;
   console.log(user_id);
-  console.log("waiting for approlval");
+  console.log("waiting for approval");
   console.log(event_id);
   db("users_events")
     .insert({ user_id: user_id, event_id: event_id, acceptance: false })
@@ -454,6 +454,19 @@ app.get("/myEvents/:username/:id", isLoggedIn, async (req, res) => {
       data: data,
     }
   );
+});
+
+//delete users
+app.post("/deletejoinedusers/:username/:id", isLoggedIn, async (req, res) => {
+  const username = req.params.username;
+  const id = req.params.id;
+  const willdelete = req.body.deleteu;
+  console.log(willdelete);
+  await db("users_events")
+    .where("users_events.user_id", "=", willdelete)
+    .delete();
+  //need to render
+  res.redirect("back");
 });
 
 //chaging the status of acceptance for event request
