@@ -200,6 +200,8 @@
                     <div class="row rightRows">
                         <div class="col-12 dashCardContainer">
                             <div class="cards">
+                                <% if (waitingdata.length > 0) {%> 
+                                    <% waitingdata.map(y => { %>
                                 <div class="col-12 listTitle">
                                     Requesting to Join
                                 </div>
@@ -207,9 +209,9 @@
                                     <ul class="memberList">
                                         <li>
                                             <div class="row memberRow">
-                                                <div class="col-6">EJS Member Name <%# !!! DATA FROM SERVER !!! %></div>
+                                                <div class="col-6"><%=y.nickname %></div>
                                                 <div class="col-3">
-                                                    <div class="memberPic">
+                                                    <div class="memberPic" style="background-image: url(<%=y.photo %>);">
                                                         <%# !!! DATA FROM SERVER !!! %>
                                                     </div>
                                                 </div>
@@ -220,6 +222,7 @@
 
                                     </ul>
                                 </div>
+                                <%});   }%>
                             </div>
                         </div>
                 </div>
