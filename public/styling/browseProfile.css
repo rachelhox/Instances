@@ -98,7 +98,6 @@ body {
 .card .card-footer .col {
   display: table-cell;
   padding: 5px 0px 5px 15px;
-  font-size: 0.8rem;
   color: rgb(255, 55, 100);
   vertical-align: middle;
   margin: auto;
@@ -112,6 +111,7 @@ body {
 .card .card-footer p {
   margin-bottom: 0;
   line-height: 2rem;
+  font-size: 1.2rem;
 }
 
 .vr {
@@ -179,12 +179,13 @@ body {
 /* ---------- Cards on the Right ---------- */
 .rightContainer {
   margin: auto;
+  align-items: center;
 }
 
 .cardSmall {
   width: 450px;
   min-height: 250px;
-  height: 20rem;
+  height: 34rem;
   overflow: scroll;
   margin: auto;
   background-color: #fff;
@@ -193,9 +194,6 @@ body {
   text-align: center;
   font-size: 1rem;
   border-radius: 10px;
-}
-.cardFutureEvents {
-  margin-bottom: 50px;
 }
 
 .smallTitle {

@@ -17,10 +17,19 @@ body {
 }
 h1 {
     font-size: 500%;
+<<<<<<< HEAD
+    letter-spacing: 50px;
+=======
     letter-spacing: 55px;
+>>>>>>> ce0e83532a60b896f592d447c5bb2e04dfba4192
 }
 p {
     letter-spacing: 10px;
+}
+
+.errorKiwi{
+	color: rgb(255, 55, 100);
+    font-size: 2rem;
 }
 @-webkit-keyframes gradientBG {
 	0% {
