@@ -246,8 +246,12 @@
         aria-labelledby="myModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
+        <div
+          class="modal-dialog modal-dialog-centered"
+          id="modal-dialog"
+          role="document"
+        >
+          <div class="modal-content" id="profilePictureModal">
             <div class="modal-header text-center">
               <h4 class="modal-title w-100 font-weight-bold">
                 Edit Your Profile Picture
@@ -280,16 +284,10 @@
                 />
               </div>
             </div>
-            <div class="modal-footer d-flex justify-content-center">
-              <button
-                class="btn btn-deep-orange btnSave"
-                type="submit"
-                id="uploadPhoto"
-                value="Upload"
-              >
-                Upload Profile Picture
-              </button>
-            </div>
+            <div
+              class="modal-footer d-flex justify-content-center"
+              id="uploadPhoto"
+            ></div>
           </div>
         </div>
       </div>

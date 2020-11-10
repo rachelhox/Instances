@@ -1,7 +1,14 @@
 // require("dotenv").config();
 
-const photo = document.getElementById("profilePhoto");
-const uploadButton = document.getElementById("uploadPhoto");
+// const photo = document.getElementById("profilePhoto");
+//const uploadDisplay = document.getElementById("uploadPhoto");
+// const uploadPhotoModal = document.getElementById("profilePictureModal");
+
+// uploadPhotoModal.addEventListener("blur", function () {
+//   console.log(`hi`);
+//   document.location.reload();
+//   console.log("leave");
+// });
 
 $("document").ready(function () {
   // const html_string = document.documentElement.outerHTML;
@@ -29,6 +36,7 @@ $("document").ready(function () {
       }
 
       // Begin file upload
+      $("#uploadPhoto").html("<h3>Uploading file to Imgur...</h3>!");
       console.log("Uploading file to Imgur..");
       // Replace ctrlq with your own API key
       var apiUrl = "https://api.imgur.com/3/image";
@@ -64,19 +72,25 @@ $("document").ready(function () {
           $.post(`/api/img/${userIDNumber}`, {
             id: userIDNumber,
             image: imgURL,
-          }).then(console.log(`ok`));
+          })
+            .then(
+              $("#uploadPhoto").html(
+                "<h5>Your profile picture is successfully updated!</h5>"
+              )
+            )
+            .then(window.location.reload());
         })
         .catch((err) => {
           console.log(err);
         });
     }
   });
-  uploadButton.addEventListener("click", () => {
-    //e.preventDefault();
-    //console.log(uploadButton.input);
-    // var file = e.target.file;
-    // console.log(file);
-  });
+  // uploadButton.addEventListener("click", () => {
+  //   //e.preventDefault();
+  //   //console.log(uploadButton.input);
+  //   // var file = e.target.file;
+  //   // console.log(file);
+  // });
 
   // document.getElementById("fileInput").click();
 });

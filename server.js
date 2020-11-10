@@ -76,11 +76,12 @@ app.post("/create/:username/:id", isLoggedIn, async (req, res) => {
           .select()
           .from("events")
           .then((data) => {
-            res.render("browseEvents", {
-              username: username,
-              id: id,
-              data: data,
-            });
+            res.redirect(`/dashboard/${username}/${id}`);
+            // res.render("browseEvents", {
+            //   username: username,
+            //   id: id,
+            //   data: data,
+            // });
           })
       );
 
@@ -114,8 +115,6 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       .returning("*")
       .into("events")
       .then((data) => {
-        endpoint.push(data);
-        console.log(endpoint);
         //res.render("browseEvents", { username: username, id: id, data: data });
         res.redirect(`/dashboard/${endpoint[0]}/${endpoint[1]}`);
       });
@@ -165,7 +164,7 @@ app.get("/dashboard/:username/:id", isLoggedIn, async (req, res) => {
       .from("events")
       .whereNot("events.user_id", "=", id)
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         res.render("browseEvents", { username: username, id: id, data: data });
         // res.redirect(`/events/${username}`);
       });
