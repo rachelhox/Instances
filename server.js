@@ -103,6 +103,7 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       date: req.body.date,
       max_participants: req.body.max_participants,
       description: req.body.description,
+      user_id:id
     };
     db.insert(eventProfile)
       .returning("*")
@@ -278,7 +279,23 @@ app.post("/filter-events/:username/:id", async (req, res) => {
   }
 });
 
+
+//get all the events created by the user
+app.get("/myevents/:username/:id",isLoggedIn,(req,res)=>{
+const username = req.params.username;
+const id = req.params.id;
+db("events").select("*").where("events.user_id", "=", id).then((data)=>{
+  res.render(//so the ejs is called MyEvents.ejs
+    "MyEvents", {
+    username: username,
+    id: id,
+    data: data
+})
+})
+})
+
 //set up the server
 app.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}.`);
 });
+
