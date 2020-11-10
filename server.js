@@ -108,12 +108,7 @@ app.post("/create-events/:username/:id", isLoggedIn, (req, res) => {
       date: req.body.date,
       max_participants: req.body.max_participants,
       description: req.body.description,
-<<<<<<< HEAD
-      user_id:id
-||||||| merged common ancestors
-=======
       user_id: id,
->>>>>>> master
     };
     //const data = await
     db.insert(eventProfile)
