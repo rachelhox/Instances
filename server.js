@@ -1,3 +1,5 @@
+const path = require("path");
+const http = require("http");
 const express = require("express");
 const bodyParser = require("body-parser");
 const session = require("express-session");
@@ -6,6 +8,10 @@ const setupPassport = require("./passport");
 const knexfile = require("./knexfile");
 const app = express();
 const db = require("./db");
+const socketio = require("socket.io");
+
+const server = http.createServer(app);
+const io = socketio(server);
 
 // server session setup
 app.use(
@@ -21,11 +27,23 @@ const port = 5000;
 //middleware setup
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(__dirname + "/public"));
+//static files
+app.use(express.static(path.join(__dirname, "public")));
+// app.use(express.static(__dirname + "/public"));
 
 setupPassport(app);
 
 app.set("view engine", "ejs");
+
+//bringing in functions from utils
+const formatMessage = require("./utilities/messages");
+const {
+  userJoin,
+  getCurrentUser,
+  userLeave,
+  getRoomUsers,
+} = require("./utilities/users");
+const users = require("./utilities/users");
 
 //index page
 app.get("/", (req, res) => {
@@ -459,7 +477,85 @@ app.post(
   }
 );
 
+// Socket io stuff
+app.get("/enterChatroom", (req, res) => {
+  res.render("chatIndex", {
+    username: req.params.username,
+    id: req.params.id,
+    eventId: req.params.eventId,
+  });
+});
+
+app.get("/joinChatroom", (req, res) => {
+  // res.render("chatIndex", {
+  //   username: req.params.username,
+  //   id: req.params.id,
+  //   eventId: req.params.eventId,
+  // });
+  res.sendFile(__dirname + "/views/chat.html");
+});
+
+//botName
+console.log(`chatroom setting up`);
+const botName = "LiveChat Bot";
+
+//run when client connects
+io.on("connection", (socket) => {
+  //will show up on backend node
+  //   console.log("new socketio connected");
+
+  //sets out the room joined
+  socket.on("joinRoom", ({ username, room }) => {
+    //sets out the userJoin function
+    const user = userJoin(socket.id, username, room);
+    //joins the right room
+    socket.join(user.room);
+
+    //sends emit which will just go to the user
+    socket.emit("message", formatMessage(botName, "Welcome to LiveChat"));
+
+    //broadcast when a user connects- everyone gets the message apart from the user connecting
+    socket.broadcast
+      .to(user.room)
+      .emit(
+        "message",
+        formatMessage(botName, `${user.username} has joined the chat`)
+      );
+
+    //send users and room info
+    io.to(user.room).emit("roomUsers", {
+      room: user.room,
+      users: getRoomUsers(user.room),
+    });
+  });
+
+  //listen for chatMessage
+  socket.on("chatMessage", (msg) => {
+    const user = getCurrentUser(socket.id);
+    //emits the chatMessage to everyone
+    io.to(user.room).emit("message", formatMessage(user.username, msg));
+  });
+
+  //runs when client disconnects
+  socket.on("disconnect", () => {
+    const user = userLeave(socket.id);
+
+    if (user) {
+      //this will emit to all the clients including the user
+      io.to(user.room).emit(
+        "message",
+        formatMessage(botName, `${user.username} has left the chat`)
+      );
+      //send users and room info
+      io.to(user.room).emit("roomUsers", {
+        room: users.room,
+        users: getRoomUsers(user.room),
+      });
+    }
+  });
+});
+
 //set up the server
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`Server listening on http://localhost:${port}.`);
 });
