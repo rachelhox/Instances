@@ -1,0 +1,233 @@
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+img{
+    width: 100%;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    display: block;
+    background-color: #eee;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content{
+    padding: 0 1.5rem;
+    color: black;
+}
+
+.eventCardsContainer{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+}
+
+.cateName{
+    font-weight: bold;
+
+}
+
+.row {
+padding: 40px 60px;
+color: rgb(255, 55, 100);
+}
+
+.title {
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 40px;
+padding-top: 80px;
+padding-bottom:0px;
+font-weight: bolder;
+font-size: 30px;
+color: rgb(255, 55, 100);
+}
+
+.filterContainer {
+    margin: auto;
+}
+
+.rowButton{
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/* -------------------- EVENT CARDS -------------------- */
+
+.eventCards {
+    width:60%;
+    max-width: 80%;
+    height: 330px;
+    padding: 30px;
+    background-color: #fff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.eventInfo{
+    height:100%;
+    transform: translateX(-30px);
+    line-height: 20px;
+}
+
+.eventImg {
+    min-width: 25rem;
+    max-width: 25rem;
+    height:280px;
+    transform: translateX(-90px);
+    position: relative;
+}
+
+.eventImg img{
+    width: 100%;
+    height:100%;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+.eventImg::before{
+    content:'';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background:
+    linear-gradient(217deg, rgba(255,15,123,.9), rgba(255,15,123,0) 70.71%), 
+    linear-gradient(127deg, rgba(250, 55, 50, 0.9), rgba(250,55,50,0) 70.71%),
+    linear-gradient(336deg, rgba(255, 150, 21, 0.9), rgba(255,150,21,0) 70.71%);;
+    box-shadow: .5rem .5rem 3rem 1px rgba(0,0,0,.05);
+    border-radius: 10px;
+}
+
+.eventDate{
+    display: block;
+    color: rgb(255, 55, 100);
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin: 0;
+}
+
+.eventName {
+    font-size: 30px;
+    margin:0 0 10px;
+    text-transform: uppercase;
+    color: rgb(255, 55, 100);
+}
+
+.eventDescription{
+    /* margin-bottom: 3rem; */
+    font-size: 15px;
+    color: rgba(0,0,0,.7);
+}
+
+/* .eventCards button {
+    display: inline-block;
+    padding: 1.5rem 3rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    color:#fff;
+    background-color: blue;
+    border-radius: .8rem;
+    text-decoration: none;
+} */
+
+.button {
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 12px 45px;
+    margin: 10px 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.button:active {
+    transform: scale(0.95);
+}
+
+.button:focus {
+    outline: none;
+}
+
+.joinButton{
+    border-radius: 20px;
+    border: 1px solid #FF4B2B;
+    background-color: rgb(255, 55, 100);
+    color: #FFFFFF;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 8px 30px;
+    margin: 10px 0 0 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: transform 80ms ease-in;
+}
+
+.joinButton:active {
+    transform: scale(0.95);
+}
+
+.joinButton:focus {
+    outline: none;
+}
+/* 
+.eventCards button:hover{
+background-color: red;
+} */
+
+@media screen and (max-width: 1068px){
+    .eventCards{
+    max-width: 80rem;
+    }
+
+    .eventImg{
+    max-width: 25rem;
+    max-height: 25rem;
+    }
+}
+
+@media screen and (max-width: 868px){
+    .eventCards{
+    max-width: 70rem;
+    height: 600px;
+    flex-direction: column;
+    }
+
+    .eventImg{
+        width: 100px;
+        max-height: 100px;
+        }
+
+}
+
+@media screen and (max-width: 768px){
+    .eventCards{
+    padding: 2.5rem;
+    flex-direction: column;
+    }
+
+    .eventImg{
+    min-width: 100%;
+    max-width: 100%;
+    transform: translate(0, -8rem);
+    }
+}
