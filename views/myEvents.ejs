@@ -167,7 +167,12 @@
                                                         <div class="memberPic" style="background-image: url(<%=z.photo%>);">
                                                         </div>
                                                     </div>
-                                                    <a class="col-2 iconContainer" type="submit" href="" data-target=""> <i class="fas fa-times"></i> <%#UserPicURL%></a>
+                                                    <form 
+                                                    action="/deletejoinedusers/<%=username%>/<%=id%>"
+                                                    method="post">
+                                                    <input style="visibility:hidden" type="submit" id="deleteB" name="deleteu" value=<%=z.id%> />
+                                                    <label for="deleteB"><i class="fas fa-times"></i></label>
+                                                </form>
                                                 </div>
                                             </li>
                                             <%});   }%>
@@ -201,9 +206,7 @@
                                                     method="post">
                                                     <input style="visibility:hidden" type="submit" id="joinB" name="requesting_users_id" value=<%=y.id%> />
                                                     <label for="joinB"><i class="fas fa-check"></i></label>
-                                                    
                                                    </form>
-                                                <a class="col-1.5 iconContainer" href="" type="submit" data-target=""> <i class="fas fa-times"></i> <%# !!! DATA FROM SERVER !!! %></a>
                                             </div>
                                         </li>
                                     </ul>
