@@ -69,7 +69,7 @@
                         Joined Events
                       </p>
                       <p>
-                        <span class="count"><%#createdEvents%>Number EJS</span>
+                        <span class="count"><%=eventData.length %></span>
                         Events Hosted
                       </p>
                     </div>
@@ -88,47 +88,36 @@
                   </div>
                 </div>
               </div>
+
               <div class="col-6">
                 <div class="row rightContainer">
                   <div class="col-12">
                     <div class="cardSmall cardFutureEvents">
-                      <div class="smallTitle">Coming Events</div>
-                      <ul class="eventList">
+                      <div class="smallTitle">My Hosted Events</div>
+                      <ul class="eventList" style="overflow: scroll">
+                        <% if (eventData.length > 0) {%> <% eventData.map(x => {
+                        %>
                         <li>
                           <a class="row eventRow">
-                            <div class="col-8">
-                              EJS Event Name <%#EventName%>
-                            </div>
+                            <div class="col-8"><%=x.name %></div>
                             <div class="col-4 eventStatus">
-                              EJS Accepted <%#Status%>
+                              <%=(x.date).toDateString() %>
                             </div>
                           </a>
                         </li>
-                        <li>
-                          <div class="row eventRow">
-                            <div class="col-8">
-                              EJS Another Events Name <%#EventName%>
-                            </div>
-                            <div class="col-4 eventStatus">
-                              EJS Rejected <%#Status%>
-                            </div>
-                          </div>
-                        </li>
+                        <%}); %> <% } %>
                       </ul>
                     </div>
                   </div>
+
                   <div class="col-12">
                     <div class="cardSmall cardPastEvents">
                       <div class="smallTitle">Past Events</div>
                       <ul class="eventList">
                         <li>
                           <div class="row eventRow">
-                            <div class="col-8">
-                              EJS Event Name <%#EventName%>
-                            </div>
-                            <div class="col-4 eventStatus">
-                              EJS Accepted <%#Status%>
-                            </div>
+                            <div class="col-8">y.name</div>
+                            <div class="col-4 eventStatus">y.date</div>
                           </div>
                         </li>
                         <li>
@@ -150,7 +139,6 @@
           </div>
         </div>
       </div>
-
       <%# --------------- EDIT PROFILE MODAL --------------- %>
 
       <div
