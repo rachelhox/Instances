@@ -196,6 +196,11 @@ body {
 .joinButton:focus {
   outline: none;
 }
+
+h2 {
+  text-align: center;
+  color: rgb(255, 55, 100);
+}
 /* 
 .eventCards button:hover{
 background-color: red;
