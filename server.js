@@ -414,12 +414,20 @@ app.post("/join/:username/:id", isLoggedIn, (req, res) => {
   const id = req.params.id;
   let user_id = req.params.id;
   let event_id = req.body.joinevents;
-  console.log(user_id);
-  console.log("waiting for approval");
-  console.log(event_id);
-  db("users_events")
-    .insert({ user_id: user_id, event_id: event_id, acceptance: false })
-    .then(res.redirect(`/dashboard/${username}/${id}`));
+  //console.log(user_id);
+  //console.log(event_id);
+  db("users_events").where({ user_id: user_id, event_id: event_id, acceptance: false }).first().then((found) => {
+    if (found){
+      console.log("data already existed")
+      res.redirect("back");
+    }else{
+      // now insert data
+       db('users_events')
+       .insert({ user_id: user_id, event_id: event_id, acceptance: false })
+       .then(res.redirect(`/dashboard/${username}/${id}`));
+       console.log("waiting for approval");
+    }
+ })
 });
 
 // get all the events created by the user
@@ -457,13 +465,15 @@ app.get("/myEvents/:username/:id", isLoggedIn, async (req, res) => {
 });
 
 //delete users
-app.post("/deletejoinedusers/:username/:id", isLoggedIn, async (req, res) => {
+app.post("/deletejoinedusers/:username/:id/:eventId", isLoggedIn, async (req, res) => {
   const username = req.params.username;
   const id = req.params.id;
+  const eventid=req.params.eventId;
   const willdelete = req.body.deleteu;
   console.log(willdelete);
   await db("users_events")
     .where("users_events.user_id", "=", willdelete)
+    .andWhere("users_events.event_id","=",eventid)
     .delete();
   //need to render
   res.redirect("back");
@@ -476,6 +486,7 @@ app.post(
   async (req, res) => {
     const username = req.params.username;
     const id = req.params.id;
+    const eventId=req.params.eventId;
     let request_id = req.body.requesting_users_id;
     console.log(request_id);
     let update = {
@@ -483,6 +494,7 @@ app.post(
     };
     const changedata = await db("users_events")
       .where("users_events.user_id", "=", request_id)
+      .andWhere("users_events.event_id","=",eventId)
       .update(update);
     res.redirect("back");
     // res.render({changeddata: changedata})
